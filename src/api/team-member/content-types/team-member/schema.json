@@ -1,0 +1,60 @@
+{
+  "kind": "collectionType",
+  "collectionName": "team_members",
+  "info": {
+    "singularName": "team-member",
+    "pluralName": "team-members",
+    "displayName": "team-member"
+  },
+  "options": {
+    "comment": ""
+  },
+  "attributes": {
+    "avatar": {
+      "type": "media",
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ],
+      "multiple": false
+    },
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "role": {
+      "type": "string",
+      "required": true
+    },
+    "tagline": {
+      "type": "text"
+    },
+    "talk_about": {
+      "type": "json"
+    },
+    "linkedin_url": {
+      "type": "string",
+      "regex": "^https://(www\\.)?linkedin\\.com/.*$"
+    },
+    "type": {
+      "type": "enumeration",
+      "enum": [
+        "FOUNDER",
+        "HUMAN",
+        "AI_AGENT"
+      ],
+      "default": "HUMAN"
+    },
+    "display_order": {
+      "type": "integer",
+      "default": 0,
+      "min": 0
+    },
+    "is_visible": {
+      "type": "boolean",
+      "default": true
+    }
+  }
+}

@@ -5,12 +5,8 @@
     "singularName": "author",
     "pluralName": "authors",
     "displayName": "Author",
-    "description": "Create authors for your content"
+    "description": "Manage authors"
   },
-  "options": {
-    "draftAndPublish": false
-  },
-  "pluginOptions": {},
   "attributes": {
     "name": {
       "type": "string"
@@ -19,7 +15,11 @@
       "type": "media",
       "multiple": false,
       "required": false,
-      "allowedTypes": ["images", "files", "videos"]
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos"
+      ]
     },
     "email": {
       "type": "string"

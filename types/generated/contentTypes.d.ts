@@ -405,7 +405,7 @@ export interface ApiAboutAbout extends Struct.SingleTypeSchema {
 export interface ApiArticleArticle extends Struct.CollectionTypeSchema {
   collectionName: 'articles';
   info: {
-    description: 'Create your blog content';
+    description: 'Manage Articles';
     displayName: 'Article';
     pluralName: 'articles';
     singularName: 'article';
@@ -434,7 +434,9 @@ export interface ApiArticleArticle extends Struct.CollectionTypeSchema {
     > &
       Schema.Attribute.Private;
     publishedAt: Schema.Attribute.DateTime;
+    read_time: Schema.Attribute.Integer;
     slug: Schema.Attribute.UID<'title'>;
+    tags: Schema.Attribute.JSON;
     title: Schema.Attribute.String;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
@@ -445,7 +447,7 @@ export interface ApiArticleArticle extends Struct.CollectionTypeSchema {
 export interface ApiAuthorAuthor extends Struct.CollectionTypeSchema {
   collectionName: 'authors';
   info: {
-    description: 'Create authors for your content';
+    description: 'Manage authors';
     displayName: 'Author';
     pluralName: 'authors';
     singularName: 'author';
@@ -471,6 +473,49 @@ export interface ApiAuthorAuthor extends Struct.CollectionTypeSchema {
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+  };
+}
+
+export interface ApiBookBook extends Struct.CollectionTypeSchema {
+  collectionName: 'books';
+  info: {
+    displayName: 'Book';
+    pluralName: 'books';
+    singularName: 'book';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    author: Schema.Attribute.String;
+    cover_subtitle: Schema.Attribute.String;
+    cover_title: Schema.Attribute.String;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    description: Schema.Attribute.RichText;
+    display_order: Schema.Attribute.Integer &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetMinMax<
+        {
+          min: 0;
+        },
+        number
+      > &
+      Schema.Attribute.DefaultTo<0>;
+    icon: Schema.Attribute.Media<'images'>;
+    is_visible: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<true>;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<'oneToMany', 'api::book.book'> &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    slug: Schema.Attribute.UID<'title'>;
+    subtitle: Schema.Attribute.String;
+    title: Schema.Attribute.String & Schema.Attribute.Required;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    url: Schema.Attribute.String;
   };
 }
 
@@ -538,43 +583,6 @@ export interface ApiGlobalGlobal extends Struct.SingleTypeSchema {
   };
 }
 
-export interface ApiTeamMemberBook extends Struct.CollectionTypeSchema {
-  collectionName: 'books';
-  info: {
-    displayName: 'Book';
-    pluralName: 'books';
-    singularName: 'book';
-  };
-  options: {
-    draftAndPublish: false;
-  };
-  attributes: {
-    author: Schema.Attribute.String;
-    cover_subtitle: Schema.Attribute.String;
-    cover_title: Schema.Attribute.String;
-    createdAt: Schema.Attribute.DateTime;
-    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-    description: Schema.Attribute.RichText;
-    icon: Schema.Attribute.Media<'images'>;
-    locale: Schema.Attribute.String & Schema.Attribute.Private;
-    localizations: Schema.Attribute.Relation<
-      'oneToMany',
-      'api::team-member.book'
-    > &
-      Schema.Attribute.Private;
-    order: Schema.Attribute.Integer;
-    publishedAt: Schema.Attribute.DateTime;
-    slug: Schema.Attribute.UID<'title'> & Schema.Attribute.Required;
-    subtitle: Schema.Attribute.String;
-    title: Schema.Attribute.String & Schema.Attribute.Required;
-    updatedAt: Schema.Attribute.DateTime;
-    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-    url: Schema.Attribute.String;
-  };
-}
-
 export interface ApiTeamMemberTeamMember extends Struct.CollectionTypeSchema {
   collectionName: 'team_members';
   info: {
@@ -583,22 +591,13 @@ export interface ApiTeamMemberTeamMember extends Struct.CollectionTypeSchema {
     singularName: 'team-member';
   };
   options: {
-    draftAndPublish: true;
+    draftAndPublish: false;
   };
   attributes: {
-    bio: Schema.Attribute.Text &
-      Schema.Attribute.SetMinMaxLength<{
-        maxLength: 1000;
-      }>;
+    avatar: Schema.Attribute.Media<'images'>;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    designation: Schema.Attribute.String &
-      Schema.Attribute.Required &
-      Schema.Attribute.SetMinMaxLength<{
-        maxLength: 50;
-        minLength: 2;
-      }>;
     display_order: Schema.Attribute.Integer &
       Schema.Attribute.Required &
       Schema.Attribute.SetMinMax<
@@ -608,6 +607,7 @@ export interface ApiTeamMemberTeamMember extends Struct.CollectionTypeSchema {
         number
       > &
       Schema.Attribute.DefaultTo<0>;
+    is_visible: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<true>;
     linkedin_url: Schema.Attribute.String &
       Schema.Attribute.SetMinMaxLength<{
         maxLength: 200;
@@ -624,8 +624,17 @@ export interface ApiTeamMemberTeamMember extends Struct.CollectionTypeSchema {
         maxLength: 100;
         minLength: 2;
       }>;
-    profile_photo: Schema.Attribute.Media<'images'>;
+    position: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetMinMaxLength<{
+        maxLength: 50;
+        minLength: 2;
+      }>;
     publishedAt: Schema.Attribute.DateTime;
+    tagline: Schema.Attribute.Text &
+      Schema.Attribute.SetMinMaxLength<{
+        maxLength: 1000;
+      }>;
     talk_about: Schema.Attribute.JSON & Schema.Attribute.DefaultTo<[]>;
     type: Schema.Attribute.Enumeration<['FOUNDER', 'HUMAN', 'AI_AGENT']> &
       Schema.Attribute.Required &
@@ -1148,9 +1157,9 @@ declare module '@strapi/strapi' {
       'api::about.about': ApiAboutAbout;
       'api::article.article': ApiArticleArticle;
       'api::author.author': ApiAuthorAuthor;
+      'api::book.book': ApiBookBook;
       'api::category.category': ApiCategoryCategory;
       'api::global.global': ApiGlobalGlobal;
-      'api::team-member.book': ApiTeamMemberBook;
       'api::team-member.team-member': ApiTeamMemberTeamMember;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;

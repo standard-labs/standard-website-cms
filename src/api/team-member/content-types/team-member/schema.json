@@ -6,14 +6,11 @@
     "pluralName": "team-members",
     "displayName": "Team Member"
   },
-  "options": {
-    "draftAndPublish": true
-  },
-  "pluginOptions": {},
   "attributes": {
-    "profile_photo": {
+    "avatar": {
       "type": "media",
       "multiple": false,
+      "required": false,
       "allowedTypes": [
         "images"
       ]
@@ -24,17 +21,15 @@
       "minLength": 2,
       "maxLength": 100
     },
-    "designation": {
+    "position": {
       "type": "string",
       "required": true,
       "minLength": 2,
       "maxLength": 50
     },
-    "display_order": {
-      "type": "integer",
-      "required": true,
-      "default": 0,
-      "min": 0
+    "tagline": {
+      "type": "text",
+      "maxLength": 1000
     },
     "talk_about": {
       "type": "json",
@@ -45,10 +40,6 @@
       "regex": "^https://(www\\.)?linkedin\\.com/.*$",
       "maxLength": 200
     },
-    "bio": {
-      "type": "text",
-      "maxLength": 1000
-    },
     "type": {
       "type": "enumeration",
       "enum": [
@@ -58,6 +49,16 @@
       ],
       "required": true,
       "default": "HUMAN"
+    },
+    "display_order": {
+      "type": "integer",
+      "required": true,
+      "default": 0,
+      "min": 0
+    },
+    "is_visible": {
+      "type": "boolean",
+      "default": true
     }
   }
 }

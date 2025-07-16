@@ -4,41 +4,39 @@
   "info": {
     "singularName": "team-member",
     "pluralName": "team-members",
-    "displayName": "Team Member"
+    "displayName": "team-member"
+  },
+  "options": {
+    "comment": ""
   },
   "attributes": {
     "avatar": {
       "type": "media",
-      "multiple": false,
-      "required": false,
       "allowedTypes": [
-        "images"
-      ]
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ],
+      "multiple": false
     },
     "name": {
       "type": "string",
-      "required": true,
-      "minLength": 2,
-      "maxLength": 100
+      "required": true
     },
-    "position": {
+    "role": {
       "type": "string",
-      "required": true,
-      "minLength": 2,
-      "maxLength": 50
+      "required": true
     },
     "tagline": {
-      "type": "text",
-      "maxLength": 1000
+      "type": "text"
     },
     "talk_about": {
-      "type": "json",
-      "default": []
+      "type": "json"
     },
     "linkedin_url": {
       "type": "string",
-      "regex": "^https://(www\\.)?linkedin\\.com/.*$",
-      "maxLength": 200
+      "regex": "^https://(www\\.)?linkedin\\.com/.*$"
     },
     "type": {
       "type": "enumeration",
@@ -47,12 +45,10 @@
         "HUMAN",
         "AI_AGENT"
       ],
-      "required": true,
       "default": "HUMAN"
     },
     "display_order": {
       "type": "integer",
-      "required": true,
       "default": 0,
       "min": 0
     },

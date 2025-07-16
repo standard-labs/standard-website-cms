@@ -4,23 +4,22 @@
   "info": {
     "singularName": "article",
     "pluralName": "articles",
-    "displayName": "Article",
-    "description": "Manage Articles"
+    "displayName": "article"
   },
   "options": {
+    "comment": "",
     "draftAndPublish": true
   },
   "attributes": {
     "title": {
       "type": "string"
     },
-    "description": {
-      "type": "text",
-      "maxLength": 80
-    },
     "slug": {
       "type": "uid",
       "targetField": "title"
+    },
+    "description": {
+      "type": "text"
     },
     "cover": {
       "type": "media",
@@ -32,20 +31,14 @@
         "videos"
       ]
     },
-    "read_time": {
+    "reading_time": {
       "type": "integer"
     },
     "tags": {
       "type": "json"
     },
-    "blocks": {
-      "type": "dynamiczone",
-      "components": [
-        "shared.media",
-        "shared.quote",
-        "shared.rich-text",
-        "shared.slider"
-      ]
+    "content": {
+      "type": "blocks"
     },
     "author": {
       "type": "relation",

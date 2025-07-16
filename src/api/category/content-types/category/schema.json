@@ -4,28 +4,27 @@
   "info": {
     "singularName": "category",
     "pluralName": "categories",
-    "displayName": "Category",
-    "description": "Organize your content into categories"
+    "displayName": "category"
   },
   "options": {
-    "draftAndPublish": false
+    "comment": ""
   },
-  "pluginOptions": {},
   "attributes": {
     "name": {
       "type": "string"
     },
     "slug": {
-      "type": "uid"
+      "type": "uid",
+      "targetField": "name"
+    },
+    "description": {
+      "type": "text"
     },
     "articles": {
       "type": "relation",
       "relation": "oneToMany",
       "target": "api::article.article",
       "mappedBy": "category"
-    },
-    "description": {
-      "type": "text"
     }
   }
 }

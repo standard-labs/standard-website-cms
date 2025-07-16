@@ -1,9 +1,13 @@
 {
+  "kind": "collectionType",
   "collectionName": "books",
   "info": {
     "singularName": "book",
     "pluralName": "books",
-    "displayName": "Book"
+    "displayName": "book"
+  },
+  "options": {
+    "comment": ""
   },
   "attributes": {
     "title": {
@@ -41,7 +45,6 @@
     },
     "display_order": {
       "type": "integer",
-      "required": true,
       "default": 0,
       "min": 0
     },

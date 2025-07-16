@@ -4,8 +4,10 @@
   "info": {
     "singularName": "author",
     "pluralName": "authors",
-    "displayName": "Author",
-    "description": "Manage authors"
+    "displayName": "author"
+  },
+  "options": {
+    "comment": ""
   },
   "attributes": {
     "name": {
@@ -14,15 +16,11 @@
     "avatar": {
       "type": "media",
       "multiple": false,
-      "required": false,
       "allowedTypes": [
         "images",
         "files",
         "videos"
       ]
-    },
-    "email": {
-      "type": "string"
     },
     "articles": {
       "type": "relation",

@@ -2,6 +2,7 @@ import { getTranslation } from './utils/getTranslation';
 import { PLUGIN_ID } from './pluginId';
 import { Initializer } from './components/Initializer';
 import { PluginIcon } from './components/PluginIcon';
+import multiText from './fields/multi-text';
 
 export default {
   register(app: any) {
@@ -17,6 +18,11 @@ export default {
 
         return App;
       },
+    });
+
+    app.customFields.register({
+      pluginId: PLUGIN_ID,
+      ...multiText,
     });
 
     app.registerPlugin({

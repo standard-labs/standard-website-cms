@@ -11,4 +11,8 @@ export default () => ({
     enabled: true,
     resolve: './src/plugins/custom-fields'
   },
+  'color-picker': {
+    enabled: true,
+    resolve: './src/plugins/color-picker'
+  },
 });

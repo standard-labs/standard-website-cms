@@ -1,9 +1,7 @@
-import { getTranslation } from './utils/getTranslation';
 import { PLUGIN_ID } from './pluginId';
 import { Initializer } from './components/Initializer';
 import { PluginIcon } from './components/PluginIcon';
-import multiText from './fields/multi-text';
-import { Alien } from '@strapi/icons';
+import registerMultiSelect from '../../lib/fields/multi-select/register-server';
 
 export default {
   register(app: any) {
@@ -23,20 +21,7 @@ export default {
 
     app.customFields.register({
       pluginId: PLUGIN_ID,
-      name: 'multi-text',
-      type: 'json',
-      intlLabel: {
-        id: 'multi-text.label',
-        defaultMessage: 'Multi Text',
-      },
-      intlDescription: {
-        id: 'multi-text.description',
-        defaultMessage: 'Enter multiple tags or string items',
-      },
-      icon: Alien,
-      components: {
-        Input: async () => import('./fields/multi-text/multi-text'),
-      },
+      ...registerMultiSelect,
     });
 
     app.registerPlugin({

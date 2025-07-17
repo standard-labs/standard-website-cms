@@ -5,6 +5,7 @@ import { useField } from '@strapi/strapi/admin';
 import { useIntl } from 'react-intl';
 import ValueContainer from './value-container';
 
+
 const Input = ({
   hint,
   label,
@@ -104,7 +105,7 @@ const Input = ({
             value: val.value,
           }))}
           components={{
-            ValueContainer,
+            MultiValueContainer: ValueContainer,
           }}
           options={possibleOptions.map((option: { label: string; value: string }) => ({
             ...option,

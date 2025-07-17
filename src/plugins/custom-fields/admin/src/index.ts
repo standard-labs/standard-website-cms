@@ -21,7 +21,7 @@ export default {
     // });
 
     app.customFields.register({
-      name: PLUGIN_ID,
+      name: 'multi-select',
       pluginId: PLUGIN_ID,
       type: 'json',
       icon: MultiSelectIcon,

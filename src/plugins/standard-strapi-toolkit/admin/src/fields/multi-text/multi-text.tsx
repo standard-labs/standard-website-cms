@@ -1,4 +1,3 @@
-import MultiTextInput from './multi-text-input';
 import React, { useState } from 'react';
 import { Badge, TextInput } from '@strapi/design-system';
 

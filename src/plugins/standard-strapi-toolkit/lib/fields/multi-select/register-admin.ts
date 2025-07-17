@@ -1,16 +1,17 @@
 import { FIELD_ID } from './field-id';
 import Icon from './icon';
+import { getTranslation } from '../../../admin/src/utils/getTranslation';
 
 export default {
   name: FIELD_ID,
   type: 'json',
   icon: Icon,
   intlLabel: {
-    id: 'multi-select.label',
+    id: getTranslation('multi-select.label'),
     defaultMessage: 'Multi Select',
   },
   intlDescription: {
-    id: 'multi-select.description',
+    id: getTranslation('multi-select.description'),
     defaultMessage: 'Select multiple options from a list',
   },
   components: {
@@ -25,16 +26,16 @@ export default {
             name: 'options',
             type: 'textarea-enum',
             intlLabel: {
-              id: 'multi-select.enum.label',
+              id: getTranslation('multi-select.enum.label'),
               defaultMessage: 'Options (one per line)',
             },
             description: {
-              id: 'multi-select.enum.description',
+              id: getTranslation('multi-select.enum.description'),
               defaultMessage:
                 'Enter one option per line. You can also add a value and a label separated by a colon (e.g. "label:value").\nIf no value is provided, the label will be used as the value',
             },
             placeholder: {
-              id: 'multi-select.enum.placeholder',
+              id: getTranslation('multi-select.enum.placeholder'),
               defaultMessage: 'Ex:\nOption 1\nOption 2\nOption 3:option-3',
             },
           },
@@ -42,11 +43,11 @@ export default {
             name: 'default',
             type: 'json',
             intlLabel: {
-              id: 'multi-select.default.label',
+              id: getTranslation('multi-select.default.label'),
               defaultMessage: 'Default value',
             },
             description: {
-              id: 'multi-select.default.description',
+              id: getTranslation('multi-select.default.description'),
               defaultMessage:
                 'Set the default value of the field in JSON format, be careful with the syntax, ex: ["value-1", "value-2"]',
             },

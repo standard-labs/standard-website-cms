@@ -1,7 +1,7 @@
 import { PLUGIN_ID } from './pluginId';
 import { Initializer } from './components/Initializer';
 import { PluginIcon } from './components/PluginIcon';
-import registerMultiSelect from '../../lib/fields/multi-select/register-server';
+import multiSelectRegisterAdmin from '../../lib/fields/multi-select/register-admin';
 
 export default {
   register(app: any) {
@@ -21,7 +21,7 @@ export default {
 
     app.customFields.register({
       pluginId: PLUGIN_ID,
-      ...registerMultiSelect,
+      ...multiSelectRegisterAdmin,
     });
 
     app.registerPlugin({

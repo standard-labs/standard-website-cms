@@ -5,7 +5,7 @@ import { useField } from '@strapi/strapi/admin';
 import { useIntl } from 'react-intl';
 import ValueContainer from './value-container';
 
-const MultiSelect = ({
+const Input = ({
   hint,
   label,
   name,
@@ -141,4 +141,4 @@ const MultiSelect = ({
   );
 };
 
-export default MultiSelect;
+export default Input;

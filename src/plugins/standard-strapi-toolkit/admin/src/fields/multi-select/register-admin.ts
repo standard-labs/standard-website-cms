@@ -1,6 +1,6 @@
 import { FIELD_ID } from './field-id';
 import Icon from './icon';
-import { getTranslation } from '../../../admin/src/utils/getTranslation';
+import { getTranslation } from '../../utils/getTranslation';
 
 export default {
   name: FIELD_ID,

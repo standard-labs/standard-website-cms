@@ -3,16 +3,16 @@ export default () => ({
     enabled: true,
     resolve: './src/plugins/standard-strapi-toolkit',
   },
-  'content-publisher': {
-    enabled: true,
-    resolve: './src/plugins/content-publisher'
-  },
-  'custom-fields': {
-    enabled: true,
-    resolve: './src/plugins/custom-fields'
-  },
-  'color-picker': {
-    enabled: true,
-    resolve: './src/plugins/color-picker'
-  },
+  // 'content-publisher': {
+  //   enabled: true,
+  //   resolve: './src/plugins/content-publisher'
+  // },
+  // 'custom-fields': {
+  //   enabled: true,
+  //   resolve: './src/plugins/custom-fields'
+  // },
+  // 'color-picker': {
+  //   enabled: true,
+  //   resolve: './src/plugins/color-picker'
+  // },
 });

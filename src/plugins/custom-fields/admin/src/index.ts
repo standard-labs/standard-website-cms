@@ -6,19 +6,19 @@ import MultiSelectIcon from './components/MultiSelectIcon';
 
 export default {
   register(app: any) {
-    app.addMenuLink({
-      to: `plugins/${PLUGIN_ID}`,
-      icon: PluginIcon,
-      intlLabel: {
-        id: `${PLUGIN_ID}.plugin.name`,
-        defaultMessage: PLUGIN_ID,
-      },
-      Component: async () => {
-        const { App } = await import('./pages/App');
+    // app.addMenuLink({
+    //   to: `plugins/${PLUGIN_ID}`,
+    //   icon: PluginIcon,
+    //   intlLabel: {
+    //     id: `${PLUGIN_ID}.plugin.name`,
+    //     defaultMessage: PLUGIN_ID,
+    //   },
+    //   Component: async () => {
+    //     const { App } = await import('./pages/App');
 
-        return App;
-      },
-    });
+    //     return App;
+    //   },
+    // });
 
     app.customFields.register({
       name: PLUGIN_ID,

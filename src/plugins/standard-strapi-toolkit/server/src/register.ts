@@ -14,6 +14,12 @@ const register = ({ strapi }: { strapi: Core.Strapi }) => {
     name: 'multi-text',
     type: 'json'
   });
+
+  strapi.customFields.register({
+    plugin: PLUGIN_ID,
+    name: 'text-matrix',
+    type: 'json'
+  });
 };
 
 export default register;

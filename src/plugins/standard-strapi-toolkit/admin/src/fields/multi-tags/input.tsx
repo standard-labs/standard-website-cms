@@ -3,6 +3,7 @@ import { Box, Field, Flex, Button, Divider } from "@strapi/design-system";
 import { Plus, Trash } from "@strapi/icons";
 import { useField } from "@strapi/strapi/admin";
 import { useIntl } from "react-intl";
+// import { TagInput } from "../../components/tag-input";
 import { TagInput } from "../../components/tag-input";
 import { TagView } from "../../components/tag-view";
 
@@ -61,7 +62,6 @@ const RowTagsInput: React.FC<RowTagsInputProps> = ({ label, name, intlLabel, des
       name={name}
       hint={description?.defaultMessage}
       error={error}
-      label={intlLabel?.defaultMessage}
     >
       <Flex direction="column" alignItems="stretch" gap={2}>
         <Field.Label>{intlLabel?.id ? formatMessage(intlLabel) : label}</Field.Label>

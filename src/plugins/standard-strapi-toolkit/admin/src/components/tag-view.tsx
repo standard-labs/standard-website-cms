@@ -11,7 +11,7 @@ type Props = {
 }
 export const TagView: React.FC<Props> = ({ text, onRemove }) => {
   return (
-    <Badge variant="primary">
+    <Badge>
       <Flex gap={1}>
         {text}
         <Cross style={{ cursor: 'pointer' }} onClick={() => onRemove()} />

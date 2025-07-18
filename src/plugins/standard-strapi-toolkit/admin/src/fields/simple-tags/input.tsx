@@ -41,7 +41,6 @@ const SimpleTags: React.FC<Props> = ({ label, name, intlLabel, attribute }) => {
       id={name}
       name={name}
       error={error}
-      label={intlLabel?.defaultMessage}
     >
       <Flex direction="column" alignItems="stretch" gap={1}>
         <Field.Label>{intlLabel?.id ? formatMessage(intlLabel) : label}</Field.Label>

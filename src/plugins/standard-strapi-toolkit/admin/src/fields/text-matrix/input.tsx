@@ -4,6 +4,9 @@ import { Plus, Trash, Cross } from "@strapi/icons";
 import { useField } from "@strapi/strapi/admin";
 import { useIntl } from "react-intl";
 
+
+type InputType = string;
+
 interface RowTagsInputProps {
   label: string;
   name: string;
@@ -15,8 +18,8 @@ interface RowTagsInputProps {
 
 const RowTagsInput: React.FC<RowTagsInputProps> = ({ label, name, intlLabel, description, required, attribute }) => {
   const { formatMessage } = useIntl();
-  const { onChange, value = [], error } = useField<string[][]>(name);
-  const [newTagInputs, setNewTagInputs] = useState<string[]>([]); // Track input for each row
+  const { onChange, value = [[]], error } = useField<InputType[][]>(name);
+  const [newTagInputs, setNewTagInputs] = useState<InputType[]>([]);
 
   const updateValue = (newValue: any) => {
     onChange({ target: { name, value: newValue, type: attribute.type } } as any);
@@ -25,7 +28,7 @@ const RowTagsInput: React.FC<RowTagsInputProps> = ({ label, name, intlLabel, des
   const initializeNewRowInput = () => "";
 
   // Handle tag addition in a row
-  const handleAddTag = (rowIndex: number, tag: string) => {
+  const handleAddTag = (rowIndex: number, tag: InputType) => {
     const trimmed = tag.trim();
     if (trimmed) {
       const newGrid = [...value];
@@ -41,7 +44,7 @@ const RowTagsInput: React.FC<RowTagsInputProps> = ({ label, name, intlLabel, des
   };
 
   // Handle tag removal in a row
-  const handleRemoveTag = (rowIndex: number, tag: string) => {
+  const handleRemoveTag = (rowIndex: number, tag: InputType) => {
     const newGrid = [...value];
     newGrid[rowIndex] = newGrid[rowIndex].filter((t) => t !== tag);
     updateValue(newGrid);
@@ -62,7 +65,7 @@ const RowTagsInput: React.FC<RowTagsInputProps> = ({ label, name, intlLabel, des
   };
 
   // Handle input change for a row
-  const handleInputChange = (rowIndex: number, newValue: string) => {
+  const handleInputChange = (rowIndex: number, newValue: InputType) => {
     const newInputs = [...newTagInputs];
     newInputs[rowIndex] = newValue;
     setNewTagInputs(newInputs);

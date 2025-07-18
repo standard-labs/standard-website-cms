@@ -19,6 +19,10 @@ const TextMatrix: React.FC<TextMatrixProps> = ({ label, name, intlLabel, descrip
   const [newRow, setNewRow] = useState<string[]>([]);
   const columnCount = attribute.options?.columns || 2; // Default to 2 columns
 
+  const updateValue = (newValue: any) => {
+    onChange({ target: { name, value: newValue, type: attribute.type } } as any);
+  }
+
   // Initialize newRow with empty strings based on column count
   const initializeNewRow = () => Array(columnCount).fill("");
 
@@ -27,20 +31,20 @@ const TextMatrix: React.FC<TextMatrixProps> = ({ label, name, intlLabel, descrip
     const newGrid = [...value];
     if (!newGrid[rowIndex]) newGrid[rowIndex] = initializeNewRow();
     newGrid[rowIndex][colIndex] = newValue;
-    onChange(newGrid);
+    updateValue(newGrid);
   };
 
   // Add a new row
   const handleAddRow = () => {
     if (newRow.every((val) => val.trim() !== "")) {
-      onChange([...value, [...newRow]]);
+      updateValue([...value, [...newRow]]);
       setNewRow(initializeNewRow());
     }
   };
 
   // Remove a row
   const handleRemoveRow = (rowIndex: number) => {
-    onChange(value.filter((_, i) => i !== rowIndex));
+    updateValue(value.filter((_, i) => i !== rowIndex));
   };
 
   // Handle new row input change

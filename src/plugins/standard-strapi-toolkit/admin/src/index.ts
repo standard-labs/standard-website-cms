@@ -2,8 +2,8 @@ import { PLUGIN_ID } from './pluginId';
 import { Initializer } from './components/Initializer';
 import { PluginIcon } from './components/PluginIcon';
 import multiSelectRegisterAdmin from './fields/multi-select/register-admin';
-import multiTextRegisterAdmin from './fields/multi-text/register-admin';
-import textMatrixRegisterAdmin from './fields/text-matrix/register-admin';
+import simpleTagsRegisterAdmin from './fields/simple-tags/register-admin';
+import multiTagsRegisterAdmin from './fields/multi-tags/register-admin';
 
 export default {
   register(app: any) {
@@ -28,12 +28,12 @@ export default {
 
     app.customFields.register({
       pluginId: PLUGIN_ID,
-      ...multiTextRegisterAdmin,
+      ...simpleTagsRegisterAdmin,
     });
 
     app.customFields.register({
       pluginId: PLUGIN_ID,
-      ...textMatrixRegisterAdmin,
+      ...multiTagsRegisterAdmin,
     });
 
     app.registerPlugin({

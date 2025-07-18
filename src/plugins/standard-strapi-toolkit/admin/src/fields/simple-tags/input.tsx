@@ -6,17 +6,16 @@ import { TagView } from '../../components/tag-view';
 import { TagInput } from '../../components/tag-input';
 
 
-
 type InputValue = string;
 
-interface InputProps {
+interface Props {
   label: string;
   name: string;
   intlLabel: { id: string; defaultMessage: string };
   attribute: { type: string };
 }
 
-const Input: React.FC<InputProps> = ({ label, name, intlLabel, attribute }) => {
+const SimpleTags: React.FC<Props> = ({ label, name, intlLabel, attribute }) => {
   const { formatMessage } = useIntl();
   const { onChange, value = [], error } = useField(name);
 
@@ -59,4 +58,4 @@ const Input: React.FC<InputProps> = ({ label, name, intlLabel, attribute }) => {
   );
 };
 
-export default Input;
+export default SimpleTags;

@@ -1,12 +1,26 @@
 import type { Core } from '@strapi/strapi';
 import { PLUGIN_ID } from '../../admin/src/pluginId';
-import multiSelectRegisterServer from '../src/fields/multi-select/register-server';
+import { CUSTOM_FIELDS_IDS_MAP } from '../../lib/custom-fields';
+
 
 const register = ({ strapi }: { strapi: Core.Strapi }) => {
   // register phase
   strapi.customFields.register({
     plugin: PLUGIN_ID,
-    ...multiSelectRegisterServer as any,
+    name: 'multi-select',
+    type: 'json'
+  });
+
+  strapi.customFields.register({
+    plugin: PLUGIN_ID,
+    name: CUSTOM_FIELDS_IDS_MAP.simple_tags,
+    type: 'json'
+  });
+
+  strapi.customFields.register({
+    plugin: PLUGIN_ID,
+    name: CUSTOM_FIELDS_IDS_MAP.multi_tags,
+    type: 'json'
   });
 };
 

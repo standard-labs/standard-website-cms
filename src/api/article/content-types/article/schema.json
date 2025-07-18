@@ -7,9 +7,9 @@
     "displayName": "article"
   },
   "options": {
-    "comment": "",
     "draftAndPublish": true
   },
+  "pluginOptions": {},
   "attributes": {
     "title": {
       "type": "string"
@@ -34,9 +34,6 @@
     "reading_time": {
       "type": "integer"
     },
-    "tags": {
-      "type": "json"
-    },
     "content": {
       "type": "blocks"
     },
@@ -51,6 +48,10 @@
       "relation": "manyToOne",
       "target": "api::category.category",
       "inversedBy": "articles"
+    },
+    "tags": {
+      "type": "customField",
+      "customField": "plugin::standard-strapi-toolkit.simple-tags"
     }
   }
 }

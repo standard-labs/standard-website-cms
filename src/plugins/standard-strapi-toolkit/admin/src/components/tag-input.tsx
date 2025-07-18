@@ -1,15 +1,13 @@
-import { Flex } from "@strapi/design-system"
+import type { ComponentProps } from 'react';
 import { TextInput } from "@strapi/design-system";
-import { Badge } from "@strapi/design-system"
-import { Cross } from "@strapi/icons";
 import React, { ChangeEvent, KeyboardEvent, useState } from "react";
 
 
 
-type Props = {
+type Props = ComponentProps<typeof TextInput> & {
   onAdd: (text: string) => void;
 }
-export const TagInput: React.FC<Props> = ({ onAdd }) => {
+export const TagInput: React.FC<Props> = ({ onAdd, ...other }) => {
   const [input, setInput] = useState<string>('');
 
 
@@ -33,6 +31,7 @@ export const TagInput: React.FC<Props> = ({ onAdd }) => {
       value={input}
       onChange={handleChange}
       onKeyDown={handleKeyDown}
+      {...other}
     />
   )
 }

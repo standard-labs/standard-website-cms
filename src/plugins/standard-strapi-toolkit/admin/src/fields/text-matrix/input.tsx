@@ -1,58 +1,85 @@
 import React, { useState } from "react";
-import { Field, Flex, Button, Table, Thead, Tbody, Tr, Th, Td } from "@strapi/design-system";
-import { Plus, Trash } from "@strapi/icons";
+import { Field, Flex, Button, Table, Thead, Tbody, Tr, Th, Td, Badge } from "@strapi/design-system";
+import { Plus, Trash, Cross } from "@strapi/icons";
 import { useField } from "@strapi/strapi/admin";
 import { useIntl } from "react-intl";
 
-interface TextMatrixProps {
+interface RowTagsInputProps {
   label: string;
   name: string;
   intlLabel: { id: string; defaultMessage: string };
   description?: { id: string; defaultMessage: string };
   required?: boolean;
-  attribute: { type: string; options?: { columns?: number } };
+  attribute: { type: string };
 }
 
-const TextMatrix: React.FC<TextMatrixProps> = ({ label, name, intlLabel, description, required, attribute }) => {
+const RowTagsInput: React.FC<RowTagsInputProps> = ({ label, name, intlLabel, description, required, attribute }) => {
   const { formatMessage } = useIntl();
   const { onChange, value = [], error } = useField<string[][]>(name);
-  const [newRow, setNewRow] = useState<string[]>([]);
-  const columnCount = attribute.options?.columns || 2; // Default to 2 columns
+  const [newTagInputs, setNewTagInputs] = useState<string[]>([]); // Track input for each row
 
   const updateValue = (newValue: any) => {
     onChange({ target: { name, value: newValue, type: attribute.type } } as any);
   }
+  // Initialize input for a new row
+  const initializeNewRowInput = () => "";
 
-  // Initialize newRow with empty strings based on column count
-  const initializeNewRow = () => Array(columnCount).fill("");
+  // Handle tag addition in a row
+  const handleAddTag = (rowIndex: number, tag: string) => {
+    const trimmed = tag.trim();
+    if (trimmed) {
+      const newGrid = [...value];
+      if (!newGrid[rowIndex]) newGrid[rowIndex] = [];
+      if (!newGrid[rowIndex].includes(trimmed)) {
+        newGrid[rowIndex] = [...newGrid[rowIndex], trimmed];
+        updateValue(newGrid);
+      }
+      const newInputs = [...newTagInputs];
+      newInputs[rowIndex] = "";
+      setNewTagInputs(newInputs);
+    }
+  };
 
-  // Handle cell value change
-  const handleCellChange = (rowIndex: number, colIndex: number, newValue: string) => {
+  // Handle tag removal in a row
+  const handleRemoveTag = (rowIndex: number, tag: string) => {
     const newGrid = [...value];
-    if (!newGrid[rowIndex]) newGrid[rowIndex] = initializeNewRow();
-    newGrid[rowIndex][colIndex] = newValue;
+    newGrid[rowIndex] = newGrid[rowIndex].filter((t) => t !== tag);
     updateValue(newGrid);
   };
 
   // Add a new row
   const handleAddRow = () => {
-    if (newRow.every((val) => val.trim() !== "")) {
-      updateValue([...value, [...newRow]]);
-      setNewRow(initializeNewRow());
-    }
+    updateValue([...value, []]);
+    setNewTagInputs([...newTagInputs, initializeNewRowInput()]);
   };
 
   // Remove a row
   const handleRemoveRow = (rowIndex: number) => {
-    updateValue(value.filter((_, i) => i !== rowIndex));
+    const newGrid = value.filter((_, i) => i !== rowIndex);
+    const newInputs = newTagInputs.filter((_, i) => i !== rowIndex);
+    updateValue(newGrid);
+    setNewTagInputs(newInputs);
   };
 
-  // Handle new row input change
-  const handleNewRowChange = (colIndex: number, newValue: string) => {
-    const updatedRow = [...newRow];
-    updatedRow[colIndex] = newValue;
-    setNewRow(updatedRow);
+  // Handle input change for a row
+  const handleInputChange = (rowIndex: number, newValue: string) => {
+    const newInputs = [...newTagInputs];
+    newInputs[rowIndex] = newValue;
+    setNewTagInputs(newInputs);
   };
+
+  // Handle Enter key for adding tags
+  const handleKeyDown = (rowIndex: number, e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === "Enter") {
+      e.preventDefault();
+      handleAddTag(rowIndex, newTagInputs[rowIndex] || "");
+    }
+  };
+
+  // Initialize newTagInputs for existing rows
+  React.useEffect(() => {
+    setNewTagInputs(value.map(() => initializeNewRowInput()));
+  }, []);
 
   return (
     <Field.Root
@@ -68,55 +95,67 @@ const TextMatrix: React.FC<TextMatrixProps> = ({ label, name, intlLabel, descrip
         <Table>
           <Thead>
             <Tr>
-              {Array.from({ length: columnCount }, (_, i) => (
-                <Th key={i}>
-                  <Field.Label>Column {i + 1}</Field.Label>
-                </Th>
-              ))}
-              <Th>Actions</Th>
+              <Th>
+                <Field.Label>Tag Input</Field.Label>
+              </Th>
+              <Th>
+                <Field.Label>Tags</Field.Label>
+              </Th>
+              <Th>
+                <Field.Label>Actions</Field.Label>
+              </Th>
             </Tr>
           </Thead>
           <Tbody>
             {value.map((row, rowIndex) => (
               <Tr key={rowIndex}>
-                {row.map((cell, colIndex) => (
-                  <Td key={colIndex}>
-                    <input
-                      type="text"
-                      value={cell}
-                      onChange={(e) => handleCellChange(rowIndex, colIndex, e.target.value)}
-                      style={{ width: "100%", padding: "8px" }}
-                    />
-                  </Td>
-                ))}
+                <Td>
+                  <input
+                    type="text"
+                    value={newTagInputs[rowIndex] || ""}
+                    onChange={(e) => handleInputChange(rowIndex, e.target.value)}
+                    onKeyDown={(e) => handleKeyDown(rowIndex, e)}
+                    placeholder="Type and press Enter"
+                    style={{ width: "100%", padding: "8px" }}
+                  />
+                </Td>
+                <Td>
+                  <Flex gap={1} wrap="wrap">
+                    {row.map((tag, tagIndex) => (
+                      <Badge
+                        key={tagIndex}
+                        backgroundColor="neutral200"
+                        textColor="neutral800"
+                      >
+                        <Flex gap={1}>
+                          {tag}
+                          <Cross
+                            style={{ cursor: "pointer" }}
+                            onClick={() => handleRemoveTag(rowIndex, tag)}
+                          />
+                        </Flex>
+                      </Badge>
+                    ))}
+                  </Flex>
+                </Td>
                 <Td>
                   <Button
                     variant="danger-light"
                     startIcon={<Trash />}
                     onClick={() => handleRemoveRow(rowIndex)}
                   >
-                    Remove
+                    Remove Row
                   </Button>
                 </Td>
               </Tr>
             ))}
             <Tr>
-              {newRow.map((cell, colIndex) => (
-                <Td key={colIndex}>
-                  <input
-                    type="text"
-                    value={cell}
-                    onChange={(e) => handleNewRowChange(colIndex, e.target.value)}
-                    style={{ width: "100%", padding: "8px" }}
-                  />
-                </Td>
-              ))}
-              <Td>
+              <Td colSpan={3}>
                 <Button
                   variant="secondary"
                   startIcon={<Plus />}
                   onClick={handleAddRow}
-                  disabled={newRow.some((val) => val.trim() === "")}
+                  fullWidth
                 >
                   Add Row
                 </Button>
@@ -131,4 +170,4 @@ const TextMatrix: React.FC<TextMatrixProps> = ({ label, name, intlLabel, descrip
   );
 };
 
-export default TextMatrix;
+export default RowTagsInput;

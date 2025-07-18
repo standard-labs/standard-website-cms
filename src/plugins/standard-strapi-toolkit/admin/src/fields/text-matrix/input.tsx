@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { Box, Field, Flex, Button, Divider } from "@strapi/design-system";
 import { Plus, Trash } from "@strapi/icons";
 import { useField } from "@strapi/strapi/admin";
@@ -21,49 +21,38 @@ interface RowTagsInputProps {
 const RowTagsInput: React.FC<RowTagsInputProps> = ({ label, name, intlLabel, description, attribute }) => {
   const { formatMessage } = useIntl();
   const { onChange, value = [[]], error } = useField<InputType[][]>(name);
-  const [newTagInputs, setNewTagInputs] = useState<InputType[]>([]);
+
 
   const updateValue = (newValue: any) => {
     onChange({ target: { name, value: newValue, type: attribute.type } } as any);
   }
-  const initializeNewRowInput = () => "";
 
   const handleAddTag = (rowIndex: number, tag: InputType) => {
     const trimmed = tag.trim();
     if (trimmed) {
-      const newGrid = [...value];
-      if (!newGrid[rowIndex]) newGrid[rowIndex] = [];
-      if (!newGrid[rowIndex].includes(trimmed)) {
-        newGrid[rowIndex] = [...newGrid[rowIndex], trimmed];
-        updateValue(newGrid);
+      const newValue = [...value];
+      if (!newValue[rowIndex]) newValue[rowIndex] = [];
+      if (!newValue[rowIndex].includes(trimmed)) {
+        newValue[rowIndex] = [...newValue[rowIndex], trimmed];
+        updateValue(newValue);
       }
-      const newInputs = [...newTagInputs];
-      newInputs[rowIndex] = "";
-      setNewTagInputs(newInputs);
     }
   };
 
   const handleRemoveTag = (rowIndex: number, tag: InputType) => {
-    const newGrid = [...value];
-    newGrid[rowIndex] = newGrid[rowIndex].filter((t) => t !== tag);
-    updateValue(newGrid);
+    const newValue = [...value];
+    newValue[rowIndex] = newValue[rowIndex].filter((t) => t !== tag);
+    updateValue(newValue);
   };
 
   const handleAddRow = () => {
     updateValue([...value, []]);
-    setNewTagInputs([...newTagInputs, initializeNewRowInput()]);
   };
 
   const handleRemoveRow = (rowIndex: number) => {
-    const newGrid = value.filter((_, i) => i !== rowIndex);
-    const newInputs = newTagInputs.filter((_, i) => i !== rowIndex);
-    updateValue(newGrid);
-    setNewTagInputs(newInputs);
+    const newValue = value.filter((_, i) => i !== rowIndex);
+    updateValue(newValue);
   };
-
-  useEffect(() => {
-    setNewTagInputs(value.map(() => initializeNewRowInput()));
-  }, []);
 
 
   return (

@@ -7,18 +7,19 @@
     "displayName": "team-member"
   },
   "options": {
-    "comment": ""
+    "draftAndPublish": false
   },
+  "pluginOptions": {},
   "attributes": {
     "avatar": {
       "type": "media",
+      "multiple": false,
       "allowedTypes": [
         "images",
         "files",
         "videos",
         "audios"
-      ],
-      "multiple": false
+      ]
     },
     "name": {
       "type": "string",
@@ -31,21 +32,18 @@
     "tagline": {
       "type": "text"
     },
-    "talk_about": {
-      "type": "json"
-    },
     "linkedin_url": {
       "type": "string",
       "regex": "^https://(www\\.)?linkedin\\.com/.*$"
     },
     "type": {
       "type": "enumeration",
+      "default": "HUMAN",
       "enum": [
         "FOUNDER",
         "HUMAN",
         "AI_AGENT"
-      ],
-      "default": "HUMAN"
+      ]
     },
     "display_order": {
       "type": "integer",
@@ -55,6 +53,10 @@
     "is_visible": {
       "type": "boolean",
       "default": true
+    },
+    "talk_about": {
+      "type": "customField",
+      "customField": "plugin::standard-strapi-toolkit.multi-tags"
     }
   }
 }

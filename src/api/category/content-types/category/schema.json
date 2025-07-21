@@ -2,8 +2,8 @@
   "kind": "collectionType",
   "collectionName": "categories",
   "info": {
-    "singularName": "Category",
-    "pluralName": "Categories",
+    "singularName": "category",
+    "pluralName": "categories",
     "displayName": "Category"
   },
   "options": {

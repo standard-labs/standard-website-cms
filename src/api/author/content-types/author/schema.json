@@ -2,8 +2,8 @@
   "kind": "collectionType",
   "collectionName": "authors",
   "info": {
-    "singularName": "Author",
-    "pluralName": "Authors",
+    "singularName": "author",
+    "pluralName": "authors",
     "displayName": "Author"
   },
   "options": {

@@ -13,7 +13,7 @@ export interface Article {
   author: Author['id'];
   category: Category['id'];
   tags: string[];
-  published_at: Date;
+  published_on: Date;
 }
 
 export interface ArticleBlock {

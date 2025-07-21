@@ -18,9 +18,6 @@
       "type": "uid",
       "targetField": "title"
     },
-    "description": {
-      "type": "text"
-    },
     "cover": {
       "type": "media",
       "multiple": false,
@@ -30,6 +27,9 @@
         "files",
         "videos"
       ]
+    },
+    "excerpt": {
+      "type": "text"
     },
     "reading_time": {
       "type": "integer"
@@ -58,6 +58,9 @@
     "tags": {
       "type": "customField",
       "customField": "plugin::standard-strapi-toolkit.simple-tags"
+    },
+    "published_on": {
+      "type": "datetime"
     }
   }
 }

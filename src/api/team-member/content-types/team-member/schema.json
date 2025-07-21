@@ -2,9 +2,9 @@
   "kind": "collectionType",
   "collectionName": "team_members",
   "info": {
-    "singularName": "team-member",
-    "pluralName": "team-members",
-    "displayName": "team-member"
+    "singularName": "Team Member",
+    "pluralName": "Team Members",
+    "displayName": "Team Member"
   },
   "options": {
     "draftAndPublish": false

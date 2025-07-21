@@ -2,9 +2,9 @@
   "kind": "collectionType",
   "collectionName": "books",
   "info": {
-    "singularName": "book",
-    "pluralName": "books",
-    "displayName": "book"
+    "singularName": "Book",
+    "pluralName": "Books",
+    "displayName": "Book"
   },
   "options": {
     "comment": ""

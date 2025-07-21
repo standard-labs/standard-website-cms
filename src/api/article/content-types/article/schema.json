@@ -2,9 +2,9 @@
   "kind": "collectionType",
   "collectionName": "articles",
   "info": {
-    "singularName": "article",
-    "pluralName": "articles",
-    "displayName": "article"
+    "singularName": "Article",
+    "pluralName": "Articles",
+    "displayName": "Article"
   },
   "options": {
     "draftAndPublish": true

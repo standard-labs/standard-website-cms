@@ -34,8 +34,14 @@
     "reading_time": {
       "type": "integer"
     },
-    "content": {
-      "type": "blocks"
+    "blocks": {
+      "type": "dynamiczone",
+      "components": [
+        "shared.media",
+        "shared.quote",
+        "shared.rich-text",
+        "shared.slider"
+      ]
     },
     "author": {
       "type": "relation",

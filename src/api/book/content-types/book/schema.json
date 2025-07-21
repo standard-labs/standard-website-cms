@@ -27,6 +27,9 @@
     "author": {
       "type": "string"
     },
+    "color": {
+      "type": "string"
+    },
     "icon": {
       "type": "media",
       "multiple": false,
@@ -34,10 +37,7 @@
         "images"
       ]
     },
-    "cover_title": {
-      "type": "string"
-    },
-    "cover_subtitle": {
+    "cover_detail": {
       "type": "string"
     },
     "url": {

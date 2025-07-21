@@ -5,8 +5,8 @@ export interface Book {
   description: string;
   author: string;
   icon: string;
-  cover_title: string;
-  cover_subtitle: string;
+  color: string;
+  cover_detail: string;
   url: string;
   display_order: number;
   is_visible: boolean;

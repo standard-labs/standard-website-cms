@@ -64,6 +64,5 @@
   },
   "name": "standard-strapi-toolkit",
   "description": "",
-  "license": "MIT",
-  "author": "Asad Rehman <sidtechdevpk@gmail.com>"
+  "license": "MIT"
 }

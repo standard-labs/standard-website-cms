@@ -4,7 +4,7 @@
   "info": {
     "singularName": "team-member",
     "pluralName": "team-members",
-    "displayName": "team-member"
+    "displayName": "Team Member"
   },
   "options": {
     "draftAndPublish": false
@@ -56,7 +56,7 @@
     },
     "talk_about": {
       "type": "customField",
-      "customField": "plugin::standard-strapi-toolkit.multi-tags"
+      "customField": "plugin::standard-strapi-toolkit.simple-tags"
     }
   }
 }

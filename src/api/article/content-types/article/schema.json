@@ -4,7 +4,7 @@
   "info": {
     "singularName": "article",
     "pluralName": "articles",
-    "displayName": "article"
+    "displayName": "Article"
   },
   "options": {
     "draftAndPublish": true
@@ -18,9 +18,6 @@
       "type": "uid",
       "targetField": "title"
     },
-    "description": {
-      "type": "text"
-    },
     "cover": {
       "type": "media",
       "multiple": false,
@@ -31,11 +28,20 @@
         "videos"
       ]
     },
+    "excerpt": {
+      "type": "text"
+    },
     "reading_time": {
       "type": "integer"
     },
-    "content": {
-      "type": "blocks"
+    "blocks": {
+      "type": "dynamiczone",
+      "components": [
+        "shared.media",
+        "shared.quote",
+        "shared.rich-text",
+        "shared.slider"
+      ]
     },
     "author": {
       "type": "relation",
@@ -52,6 +58,9 @@
     "tags": {
       "type": "customField",
       "customField": "plugin::standard-strapi-toolkit.simple-tags"
+    },
+    "published_on": {
+      "type": "datetime"
     }
   }
 }

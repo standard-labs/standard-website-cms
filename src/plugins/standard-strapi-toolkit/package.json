@@ -64,6 +64,5 @@
   },
   "name": "standard-strapi-toolkit",
   "description": "",
-  "license": "MIT",
-  "author": "Saad Shahid <saadshahid.devhouse@gmail.com>"
+  "license": "MIT"
 }

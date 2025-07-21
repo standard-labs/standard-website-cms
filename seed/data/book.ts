@@ -2,6 +2,7 @@ import { Book } from "../../types/book";
 
 export default [
   {
+    id: "",
     title: "The Art of AI: The Essential Wit and Wisdom of Digital Minds",
     slug: "art-of-ai",
     subtitle: "Exploring the Creative Potential of Artificial Intelligence",
@@ -15,6 +16,7 @@ export default [
     is_visible: true,
   },
   {
+    id: "",
     title: "Modern Design Systems: Building Scalable UI Frameworks",
     slug: "modern-design-systems",
     subtitle: "The Complete Guide to Design System Architecture",
@@ -28,6 +30,7 @@ export default [
     is_visible: true,
   },
   {
+    id: "",
     title: "Customer-Centric Growth: Strategies for Sustainable Success",
     slug: "customer-centric-growth",
     subtitle: "Building Lasting Relationships in the Digital Age",
@@ -41,6 +44,7 @@ export default [
     is_visible: true,
   },
   {
+    id: "",
     title: "Innovation Handbook: From Ideas to Impact",
     slug: "innovation-handbook",
     subtitle: "A Practical Guide to Breakthrough Thinking",
@@ -54,6 +58,7 @@ export default [
     is_visible: true,
   },
   {
+    id: "",
     title: "Digital Transformation: Navigating the Modern Enterprise",
     slug: "digital-transformation",
     subtitle: "Strategies for Technology-Driven Change",
@@ -67,6 +72,7 @@ export default [
     is_visible: true,
   },
   {
+    id: "",
     title: "Startup Playbook: From Zero to Scale",
     slug: "startup-playbook",
     subtitle: "The Entrepreneur's Complete Guide",
@@ -80,6 +86,7 @@ export default [
     is_visible: true,
   },
   {
+    id: "",
     title: "Leadership Principles: Building High-Performance Teams",
     slug: "leadership-principles",
     subtitle: "The Executive's Guide to Effective Management",
@@ -93,6 +100,7 @@ export default [
     is_visible: true,
   },
   {
+    id: "",
     title: "Product Excellence: Creating Products Users Love",
     slug: "product-excellence",
     subtitle: "The Product Manager's Essential Guide",
@@ -106,6 +114,7 @@ export default [
     is_visible: true,
   },
   {
+    id: "",
     title: "Global Markets: Understanding International Business",
     slug: "global-markets",
     subtitle: "Strategies for Cross-Border Success",

@@ -31,11 +31,7 @@
       "type": "string"
     },
     "icon": {
-      "type": "media",
-      "multiple": false,
-      "allowedTypes": [
-        "images"
-      ]
+      "type": "string"
     },
     "coverDetail": {
       "type": "string"

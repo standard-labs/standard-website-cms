@@ -19,22 +19,22 @@ async function seedInitialData() {
     name: 'initial-seed',
   });
 
-  // const hasSeeded = await setupStore.get({ key: 'hasSeeded' });
+  const hasSeeded = await setupStore.get({ key: 'hasSeeded' });
 
-  // if (hasSeeded) {
-  //   console.log(
-  //     '[✔️] Seed data already exists. Skipping import. To re-seed, reset your database.'
-  //   );
-  //   return;
-  // }
+  if (hasSeeded) {
+    console.log(
+      '[✔️] Seed data already exists. Skipping import. To re-seed, reset your database.'
+    );
+    return;
+  }
 
   try {
     console.log('[⏳] Importing seed data...');
-    // await seedAuthors();
-    // await seedCategories();
-    // await seedArticles();
-    // await seedBooks();
-    // await seedTeamMembers();
+    await seedAuthors();
+    await seedCategories();
+    await seedArticles();
+    await seedBooks();
+    await seedTeamMembers();
     await setupStore.set({ key: 'hasSeeded', value: true });
     console.log('[✅] Seed data import complete.');
   } catch (error) {

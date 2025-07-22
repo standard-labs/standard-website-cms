@@ -1,16 +1,18 @@
 import { Article } from "../../types/article";
+import authors from "./authors";
+import categories from "./categories";
 
 export default [
   {
-    id: "",
+    id: null,
     title: "How AI is Transforming Modern Business Operations",
-    slug: "ai-transformation-business",
+    slug: "how-ai-is-transforming-modern-business-operations",
     subtitle: "The future of work is here",
-    author: "Sarah Chen",
+    author: null, // Alex Thompson
     excerpt: "Exploring how artificial intelligence is revolutionizing the way we work, from automation to decision-making processes that are reshaping entire industries.",
-    published_on: new Date("2025-01-15"),
-    category: "Technology",
-    reading_time: 8,
+    publishedOn: new Date("2025-01-15"),
+    category: null, // Technology
+    readingTime: 8,
     cover: "computer-motherboard.jpg",
     tags: ["AI", "Technology", "Business"],
     blocks: [
@@ -77,15 +79,15 @@ The question isn't whether AI will transform your business—it's how quickly yo
     ]
   },
   {
-    id: "",
+    id: null,
     title: "Building Effective Remote Teams",
-    slug: "remote-team-collaboration",
+    slug: "building-effective-remote-teams",
     subtitle: "Strategies for distributed success",
-    author: "Marcus Rodriguez",
-    published_on: new Date("2025-01-10"),
-    category: "Management",
+    author: null, // Marcus Rodriguez
+    publishedOn: new Date("2025-01-10"),
+    category: null, // Development
     excerpt: "Managing a remote team requires new approaches to communication, collaboration, and culture building. Here's what we've learned.",
-    reading_time: 6,
+    readingTime: 6,
     tags: ["Remote Work", "Management", "Team Building"],
     cover: "females-working-on-laptop.jpg",
     blocks: [
@@ -165,15 +167,15 @@ The key is remembering that remote work is not just "office work from home"—it
     ]
   },
   {
-    id: "",
+    id: null,
     title: "The Future of Web Development",
-    slug: "future-of-web-development",
+    slug: "the-future-of-web-development",
     subtitle: "Trends shaping tomorrow's web",
-    author: "Alex Thompson",
-    published_on: new Date("2025-01-05"),
-    category: "Development",
+    author: null, // Sarah Chen
+    publishedOn: new Date("2025-01-05"),
+    category: null, // Management
     excerpt: "From AI-powered coding assistants to new frameworks, explore the technologies that will define the next decade of web development.",
-    reading_time: 7,
+    readingTime: 7,
     tags: ["Web Development", "Technology", "Future"],
     cover: "laptop-coding.jpg",
     blocks: [

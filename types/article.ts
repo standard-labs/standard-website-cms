@@ -2,18 +2,18 @@ import { Author } from "./author";
 import { Category } from "./category";
 
 export interface Article {
-  id: string;
+  id: number;
   title: string;
   slug: string;
   subtitle: string;
   excerpt: string;
   cover: string;
-  reading_time: number;
+  readingTime: number;
   blocks: Array<ArticleBlock>;
   author: Author['id'];
   category: Category['id'];
   tags: string[];
-  published_on: Date;
+  publishedOn: Date;
 }
 
 export interface ArticleBlock {

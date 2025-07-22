@@ -1,14 +1,14 @@
 export interface TeamMember {
-  id: string;
+  id: number;
   avatar: string;
   name: string;
   role: string;
   tagline: string;
-  linkedin_url: string | null;
+  linkedinUrl: string | null;
   type: TeamMemberType,
-  display_order: number;
-  is_visible: boolean;
-  talk_about: string[];
+  displayOrder: number;
+  isVisible: boolean;
+  talkAbout: string[];
 }
 
 export type TeamMemberType = "FOUNDER" | "HUMAN" | "AI_AGENT";

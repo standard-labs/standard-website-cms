@@ -31,24 +31,20 @@
       "type": "string"
     },
     "icon": {
-      "type": "media",
-      "multiple": false,
-      "allowedTypes": [
-        "images"
-      ]
+      "type": "string"
     },
-    "cover_detail": {
+    "coverDetail": {
       "type": "string"
     },
     "url": {
       "type": "string"
     },
-    "display_order": {
+    "displayOrder": {
       "type": "integer",
       "default": 0,
       "min": 0
     },
-    "is_visible": {
+    "isVisible": {
       "type": "boolean",
       "default": true
     }

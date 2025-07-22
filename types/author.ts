@@ -1,7 +1,7 @@
 import { Article } from "./article";
 
 export interface Author {
-  id: string;
+  id: number;
   name: string;
   avatar: string;
   articles: Article[];

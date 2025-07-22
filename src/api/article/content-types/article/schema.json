@@ -34,7 +34,7 @@
     "excerpt": {
       "type": "text"
     },
-    "reading_time": {
+    "readingTime": {
       "type": "integer"
     },
     "blocks": {
@@ -62,7 +62,7 @@
       "type": "customField",
       "customField": "plugin::standard-strapi-toolkit.simple-tags"
     },
-    "published_on": {
+    "publishedOn": {
       "type": "datetime"
     }
   }

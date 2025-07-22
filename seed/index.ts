@@ -13,20 +13,20 @@ import teamMembers from './data/team-members';
 
 // Seeds initial data once by checking plugin store to prevent duplicate imports.
 async function seedInitialData() {
-  const setupStore = strapi.store({
-    environment: strapi.config.environment,
-    type: 'plugin',
-    name: 'initial-seed',
-  });
+  // const setupStore = strapi.store({
+  //   environment: strapi.config.environment,
+  //   type: 'plugin',
+  //   name: 'initial-seed',
+  // });
 
-  const hasSeeded = await setupStore.get({ key: 'hasSeeded' });
+  // const hasSeeded = await setupStore.get({ key: 'hasSeeded' });
 
-  if (hasSeeded) {
-    console.log(
-      '[✔️] Seed data already exists. Skipping import. To re-seed, reset your database.'
-    );
-    return;
-  }
+  // if (hasSeeded) {
+  //   console.log(
+  //     '[✔️] Seed data already exists. Skipping import. To re-seed, reset your database.'
+  //   );
+  //   return;
+  // }
 
   try {
     console.log('[⏳] Importing seed data...');
@@ -35,7 +35,7 @@ async function seedInitialData() {
     await seedArticles();
     await seedBooks();
     await seedTeamMembers();
-    await setupStore.set({ key: 'hasSeeded', value: true });
+    // await setupStore.set({ key: 'hasSeeded', value: true });
     console.log('[✅] Seed data import complete.');
   } catch (error) {
     console.error('[❌] Failed to import seed data:', error);

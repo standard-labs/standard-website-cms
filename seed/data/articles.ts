@@ -6,7 +6,7 @@ export default [
   {
     id: 1,
     title: "How AI is Transforming Modern Business Operations",
-    slug: "ai-transformation-business",
+    slug: "how-ai-is-transforming-modern-business-operations",
     subtitle: "The future of work is here",
     author: authors[0].id,
     excerpt: "Exploring how artificial intelligence is revolutionizing the way we work, from automation to decision-making processes that are reshaping entire industries.",
@@ -81,7 +81,7 @@ The question isn't whether AI will transform your business—it's how quickly yo
   {
     id: 2,
     title: "Building Effective Remote Teams",
-    slug: "remote-team-collaboration",
+    slug: "building-effective-remote-teams",
     subtitle: "Strategies for distributed success",
     author: authors[1].id,
     publishedOn: new Date("2025-01-10"),
@@ -169,7 +169,7 @@ The key is remembering that remote work is not just "office work from home"—it
   {
     id: 3,
     title: "The Future of Web Development",
-    slug: "future-of-web-development",
+    slug: "the-future-of-web-development",
     subtitle: "Trends shaping tomorrow's web",
     author: authors[2].id,
     publishedOn: new Date("2025-01-05"),

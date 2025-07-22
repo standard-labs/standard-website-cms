@@ -4,7 +4,7 @@ export default [
   {
     id: 1,
     title: "The Art of AI: The Essential Wit and Wisdom of Digital Minds",
-    slug: "art-of-ai",
+    slug: "the-art-of-ai-the-essential-wit-and-wisdom-of-digital-minds",
     subtitle: "Exploring the Creative Potential of Artificial Intelligence",
     description: `"Spend each day trying to be a little wiser than you were when you woke up," Digital Minds advises in The Art of AI. Originally published in 2024, this compilation of insights by leading AI researchers has become a touchstone for a generation of developers and creators. Delivered with the characteristic clarity and depth, The Art of AI draws on encyclopedic knowledge of machine learning, neural networks, and cognitive science to introduce the latticework of mental models that underpin rational and rigorous approaches to artificial creativity, learning, and decision-making. It is an essential volume for any reader seeking to go to bed a little wiser than when they woke up. This edition features a new foreword by OpenAI cofounder and president Sam Altman.`,
     author: "Digital Minds",
@@ -18,7 +18,7 @@ export default [
   {
     id: 2,
     title: "Modern Design Systems: Building Scalable UI Frameworks",
-    slug: "modern-design-systems",
+    slug: "modern-design-systems-building-scalable-ui-frameworks",
     subtitle: "The Complete Guide to Design System Architecture",
     description: `A definitive guide to building design systems that scale across teams and products. This book covers everything from design tokens and component libraries to governance and adoption strategies. Learn how companies like Airbnb, Shopify, and Google have successfully implemented design systems that drive consistency and efficiency across their organizations. From establishing design principles to creating automated workflows, this comprehensive guide provides practical insights for modern product teams.`,
     author: "UI Collective",
@@ -32,7 +32,7 @@ export default [
   {
     id: 3,
     title: "Customer-Centric Growth: Strategies for Sustainable Success",
-    slug: "customer-centric-growth",
+    slug: "customer-centric-growth-strategies-for-sustainable-success",
     subtitle: "Building Lasting Relationships in the Digital Age",
     description: `In an era where customer acquisition costs continue to rise, this book explores proven strategies for building sustainable growth through genuine customer relationships. Drawing from case studies of successful companies across industries, learn how to create value propositions that resonate, build loyalty programs that actually work, and leverage customer feedback to drive product innovation. This essential guide provides actionable frameworks for modern business leaders.`,
     author: "Business Leaders",
@@ -46,7 +46,7 @@ export default [
   {
     id: 4,
     title: "Innovation Handbook: From Ideas to Impact",
-    slug: "innovation-handbook",
+    slug: "innovation-handbook-from-ideas-to-impact",
     subtitle: "A Practical Guide to Breakthrough Thinking",
     description: `Innovation isn't just about having great ideas—it's about turning those ideas into reality. This handbook provides a systematic approach to innovation, from ideation and validation to implementation and scaling. Learn proven methodologies used by leading tech companies, discover how to create an innovation culture within your organization, and master the art of rapid prototyping and user testing. Essential reading for entrepreneurs and corporate innovators alike.`,
     author: "Tech Pioneers",
@@ -60,7 +60,7 @@ export default [
   {
     id: 5,
     title: "Digital Transformation: Navigating the Modern Enterprise",
-    slug: "digital-transformation",
+    slug: "digital-transformation-navigating-the-modern-enterprise",
     subtitle: "Strategies for Technology-Driven Change",
     description: `Digital transformation is no longer optional—it's essential for survival in today's competitive landscape. This comprehensive guide explores how organizations can successfully navigate technological change, from cloud migration and data strategy to cultural transformation and change management. Learn from real-world case studies of companies that have successfully transformed their operations, and discover practical frameworks for leading digital initiatives.`,
     author: "Future Corp",
@@ -74,7 +74,7 @@ export default [
   {
     id: 6,
     title: "Startup Playbook: From Zero to Scale",
-    slug: "startup-playbook",
+    slug: "startup-playbook-from-zero-to-scale",
     subtitle: "The Entrepreneur's Complete Guide",
     description: `Starting a company is one of the most challenging yet rewarding endeavors you can undertake. This playbook provides a step-by-step guide through every stage of the startup journey, from initial idea validation and fundraising to scaling operations and building team culture. Packed with insights from successful entrepreneurs and backed by data from hundreds of startups, this book is your roadmap to startup success.`,
     author: "Entrepreneurs",
@@ -88,7 +88,7 @@ export default [
   {
     id: 7,
     title: "Leadership Principles: Building High-Performance Teams",
-    slug: "leadership-principles",
+    slug: "leadership-principles-building-high-performance-teams",
     subtitle: "The Executive's Guide to Effective Management",
     description: `Great leaders aren't born—they're made through deliberate practice and principled decision-making. This book distills decades of leadership research and real-world experience into actionable principles for modern executives. Learn how to build trust, communicate effectively, make difficult decisions, and create cultures where teams thrive. Whether you're a new manager or seasoned executive, these timeless principles will elevate your leadership impact.`,
     author: "Executive Team",
@@ -102,7 +102,7 @@ export default [
   {
     id: 8,
     title: "Product Excellence: Creating Products Users Love",
-    slug: "product-excellence",
+    slug: "product-excellence-creating-products-users-love",
     subtitle: "The Product Manager's Essential Guide",
     description: `Building great products requires more than just good ideas—it demands a deep understanding of user needs, market dynamics, and technical constraints. This comprehensive guide covers the entire product lifecycle, from market research and user experience design to growth metrics and product-market fit. Learn proven methodologies used by successful product teams at leading technology companies, and discover how to create products that truly make a difference.`,
     author: "Product Masters",
@@ -116,7 +116,7 @@ export default [
   {
     id: 9,
     title: "Global Markets: Understanding International Business",
-    slug: "global-markets",
+    slug: "global-markets-understanding-international-business",
     subtitle: "Strategies for Cross-Border Success",
     description: `In our interconnected world, understanding global markets is essential for business success. This book provides comprehensive insights into international trade, cultural considerations, regulatory environments, and market entry strategies. Learn how to navigate complex international partnerships, understand currency and economic factors, and build products and services that resonate across different cultures and markets. Essential reading for any business leader with global ambitions.`,
     author: "World Analysts",

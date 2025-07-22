@@ -9,7 +9,7 @@ export default [
   {
     id: "",
     name: "Marcus Rodriguez",
-    avatar: "aaron-avatar.png",
+    avatar: "martin-avatar.png",
   },
   {
     id: "",

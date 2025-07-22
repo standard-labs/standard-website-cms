@@ -7,8 +7,8 @@ export interface Book {
   author: string;
   icon: string;
   color: string;
-  cover_detail: string;
+  coverDetail: string;
   url: string;
-  display_order: number;
-  is_visible: boolean;
+  displayOrder: number;
+  isVisible: boolean;
 }

@@ -8,12 +8,12 @@ export interface Article {
   subtitle: string;
   excerpt: string;
   cover: string;
-  reading_time: number;
+  readingTime: number;
   blocks: Array<ArticleBlock>;
   author: Author['id'];
   category: Category['id'];
   tags: string[];
-  published_on: Date;
+  publishedOn: Date;
 }
 
 export interface ArticleBlock {

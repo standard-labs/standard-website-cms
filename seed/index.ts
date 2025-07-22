@@ -30,11 +30,11 @@ async function seedInitialData() {
 
   try {
     console.log('[⏳] Importing seed data...');
-    seedAuthors();
-    // seedCategories();
-    // seedArticles();
-    // seedBooks();
-    // seedTeamMembers();
+    // await seedAuthors();
+    // await seedCategories();
+    // await seedArticles();
+    // await seedBooks();
+    // await seedTeamMembers();
     await setupStore.set({ key: 'hasSeeded', value: true });
     console.log('[✅] Seed data import complete.');
   } catch (error) {
@@ -99,34 +99,7 @@ async function createContentEntry({
   }
 }
 
-
-// Checks if files already exist in Strapi upload plugin, uploads if not, and returns all file references
-// async function ensureFilesUploaded(fileNames: string[]): Promise<any[]> {
-//   const existing: any[] = [];
-//   const uploaded: any[] = [];
-
-//   for (const fileName of fileNames) {
-//     const baseName = fileName.replace(/\..*$/, ''); // removes extension
-//     const foundFile = await strapi.query('plugin::upload.file').findOne({
-//       where: { name: baseName },
-//     });
-
-//     if (foundFile) {
-//       existing.push(foundFile);
-//     } else {
-//       const fileMetadata = prepareFileMetadata(fileName);
-//       const nameWithoutExt = path.parse(fileName).name;
-//       const [uploadedFile] = await uploadToStrapi(fileMetadata, nameWithoutExt);
-//       uploaded.push(uploadedFile);
-//     }
-//   }
-
-//   console.log([...existing, ...uploaded]);
-
-
-//   return [...existing, ...uploaded];
-// }
-
+// Ensures files are uploaded or linked, returning existing or newly uploaded files
 async function ensureFilesUploaded(files: string[]): Promise<any> {
   const existingFiles: any[] = [];
   const uploadedFiles: any[] = [];
@@ -187,10 +160,7 @@ async function processMediaBlocks(blocks: any[]): Promise<any[]> {
 // Imports authors with uploaded cover image and processed media blocks
 async function seedAuthors(): Promise<void> {
   for (const author of authors) {
-    console.log('author.avatar', author.avatar);
     const [uploadedAvatar] = await ensureFilesUploaded([author.avatar]);
-    console.log('uploadedAvatar', uploadedAvatar);
-
     await createContentEntry({
       modelName: 'author',
       data: {
@@ -249,12 +219,13 @@ async function seedCategories(): Promise<void> {
 // Imports teamMembers with uploaded cover image and processed media blocks
 async function seedTeamMembers(): Promise<void> {
   for (const teamMember of teamMembers) {
-    const [avatar] = await ensureFilesUploaded([teamMember.avatar]);
+    const [uploadedAvatar] = await ensureFilesUploaded([teamMember.avatar]);
+
     await createContentEntry({
       modelName: 'team-member',
       data: {
-        avatar,
         ...teamMember,
+        avatar: uploadedAvatar,
       },
     });
   }
@@ -286,6 +257,7 @@ async function main() {
   app.log.level = 'error';
 
   await seedInitialData();
+
   await app.destroy();
   process.exit(0);
 }

@@ -18,6 +18,9 @@
       "type": "uid",
       "targetField": "title"
     },
+    "subtitle": {
+      "type": "string"
+    },
     "cover": {
       "type": "media",
       "multiple": false,

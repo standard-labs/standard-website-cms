@@ -2,7 +2,7 @@ import { Book } from "../../types/book";
 
 export default [
   {
-    id: 1,
+    id: null,
     title: "The Art of AI: The Essential Wit and Wisdom of Digital Minds",
     slug: "the-art-of-ai-the-essential-wit-and-wisdom-of-digital-minds",
     subtitle: "Exploring the Creative Potential of Artificial Intelligence",
@@ -16,7 +16,7 @@ export default [
     isVisible: true,
   },
   {
-    id: 2,
+    id: null,
     title: "Modern Design Systems: Building Scalable UI Frameworks",
     slug: "modern-design-systems-building-scalable-ui-frameworks",
     subtitle: "The Complete Guide to Design System Architecture",
@@ -30,7 +30,7 @@ export default [
     isVisible: true,
   },
   {
-    id: 3,
+    id: null,
     title: "Customer-Centric Growth: Strategies for Sustainable Success",
     slug: "customer-centric-growth-strategies-for-sustainable-success",
     subtitle: "Building Lasting Relationships in the Digital Age",
@@ -44,7 +44,7 @@ export default [
     isVisible: true,
   },
   {
-    id: 4,
+    id: null,
     title: "Innovation Handbook: From Ideas to Impact",
     slug: "innovation-handbook-from-ideas-to-impact",
     subtitle: "A Practical Guide to Breakthrough Thinking",
@@ -58,7 +58,7 @@ export default [
     isVisible: true,
   },
   {
-    id: 5,
+    id: null,
     title: "Digital Transformation: Navigating the Modern Enterprise",
     slug: "digital-transformation-navigating-the-modern-enterprise",
     subtitle: "Strategies for Technology-Driven Change",
@@ -72,7 +72,7 @@ export default [
     isVisible: true,
   },
   {
-    id: 6,
+    id: null,
     title: "Startup Playbook: From Zero to Scale",
     slug: "startup-playbook-from-zero-to-scale",
     subtitle: "The Entrepreneur's Complete Guide",
@@ -86,7 +86,7 @@ export default [
     isVisible: true,
   },
   {
-    id: 7,
+    id: null,
     title: "Leadership Principles: Building High-Performance Teams",
     slug: "leadership-principles-building-high-performance-teams",
     subtitle: "The Executive's Guide to Effective Management",
@@ -100,7 +100,7 @@ export default [
     isVisible: true,
   },
   {
-    id: 8,
+    id: null,
     title: "Product Excellence: Creating Products Users Love",
     slug: "product-excellence-creating-products-users-love",
     subtitle: "The Product Manager's Essential Guide",
@@ -114,7 +114,7 @@ export default [
     isVisible: true,
   },
   {
-    id: 9,
+    id: null,
     title: "Global Markets: Understanding International Business",
     slug: "global-markets-understanding-international-business",
     subtitle: "Strategies for Cross-Border Success",

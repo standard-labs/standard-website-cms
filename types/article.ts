@@ -2,7 +2,7 @@ import { Author } from "./author";
 import { Category } from "./category";
 
 export interface Article {
-  id: string;
+  id: number;
   title: string;
   slug: string;
   subtitle: string;

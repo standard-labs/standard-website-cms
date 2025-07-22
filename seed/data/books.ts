@@ -2,7 +2,7 @@ import { Book } from "../../types/book";
 
 export default [
   {
-    id: "",
+    id: 1,
     title: "The Art of AI: The Essential Wit and Wisdom of Digital Minds",
     slug: "art-of-ai",
     subtitle: "Exploring the Creative Potential of Artificial Intelligence",
@@ -16,7 +16,7 @@ export default [
     isVisible: true,
   },
   {
-    id: "",
+    id: 2,
     title: "Modern Design Systems: Building Scalable UI Frameworks",
     slug: "modern-design-systems",
     subtitle: "The Complete Guide to Design System Architecture",
@@ -30,7 +30,7 @@ export default [
     isVisible: true,
   },
   {
-    id: "",
+    id: 3,
     title: "Customer-Centric Growth: Strategies for Sustainable Success",
     slug: "customer-centric-growth",
     subtitle: "Building Lasting Relationships in the Digital Age",
@@ -44,7 +44,7 @@ export default [
     isVisible: true,
   },
   {
-    id: "",
+    id: 4,
     title: "Innovation Handbook: From Ideas to Impact",
     slug: "innovation-handbook",
     subtitle: "A Practical Guide to Breakthrough Thinking",
@@ -58,7 +58,7 @@ export default [
     isVisible: true,
   },
   {
-    id: "",
+    id: 5,
     title: "Digital Transformation: Navigating the Modern Enterprise",
     slug: "digital-transformation",
     subtitle: "Strategies for Technology-Driven Change",
@@ -72,7 +72,7 @@ export default [
     isVisible: true,
   },
   {
-    id: "",
+    id: 6,
     title: "Startup Playbook: From Zero to Scale",
     slug: "startup-playbook",
     subtitle: "The Entrepreneur's Complete Guide",
@@ -86,7 +86,7 @@ export default [
     isVisible: true,
   },
   {
-    id: "",
+    id: 7,
     title: "Leadership Principles: Building High-Performance Teams",
     slug: "leadership-principles",
     subtitle: "The Executive's Guide to Effective Management",
@@ -100,7 +100,7 @@ export default [
     isVisible: true,
   },
   {
-    id: "",
+    id: 8,
     title: "Product Excellence: Creating Products Users Love",
     slug: "product-excellence",
     subtitle: "The Product Manager's Essential Guide",
@@ -114,7 +114,7 @@ export default [
     isVisible: true,
   },
   {
-    id: "",
+    id: 9,
     title: "Global Markets: Understanding International Business",
     slug: "global-markets",
     subtitle: "Strategies for Cross-Border Success",

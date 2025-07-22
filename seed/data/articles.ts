@@ -1,15 +1,17 @@
 import { Article } from "../../types/article";
+import authors from "./authors";
+import categories from "./categories";
 
 export default [
   {
-    id: "",
+    id: 1,
     title: "How AI is Transforming Modern Business Operations",
     slug: "ai-transformation-business",
     subtitle: "The future of work is here",
-    author: "Sarah Chen",
+    author: authors[0].id,
     excerpt: "Exploring how artificial intelligence is revolutionizing the way we work, from automation to decision-making processes that are reshaping entire industries.",
     publishedOn: new Date("2025-01-15"),
-    category: "Technology",
+    category: categories[0].id,
     readingTime: 8,
     cover: "computer-motherboard.jpg",
     tags: ["AI", "Technology", "Business"],
@@ -77,13 +79,13 @@ The question isn't whether AI will transform your business—it's how quickly yo
     ]
   },
   {
-    id: "",
+    id: 2,
     title: "Building Effective Remote Teams",
     slug: "remote-team-collaboration",
     subtitle: "Strategies for distributed success",
-    author: "Marcus Rodriguez",
+    author: authors[1].id,
     publishedOn: new Date("2025-01-10"),
-    category: "Management",
+    category: categories[1].id,
     excerpt: "Managing a remote team requires new approaches to communication, collaboration, and culture building. Here's what we've learned.",
     readingTime: 6,
     tags: ["Remote Work", "Management", "Team Building"],
@@ -165,13 +167,13 @@ The key is remembering that remote work is not just "office work from home"—it
     ]
   },
   {
-    id: "",
+    id: 3,
     title: "The Future of Web Development",
     slug: "future-of-web-development",
     subtitle: "Trends shaping tomorrow's web",
-    author: "Alex Thompson",
+    author: authors[2].id,
     publishedOn: new Date("2025-01-05"),
-    category: "Development",
+    category: categories[2].id,
     excerpt: "From AI-powered coding assistants to new frameworks, explore the technologies that will define the next decade of web development.",
     readingTime: 7,
     tags: ["Web Development", "Technology", "Future"],

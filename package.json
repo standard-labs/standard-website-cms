@@ -5,7 +5,7 @@
   "description": "A Strapi application",
   "scripts": {
     "postinstall": "patch-package || true",
-    "build": "sh scripts/custom-build.sh",
+    "build": "sh scripts/build.sh",
     "console": "strapi console",
     "deploy": "strapi deploy",
     "dev": "strapi develop",

@@ -1,8 +1,16 @@
 export default [
   {
     method: 'GET',
-    path: '/landing', ///test
-    handler: 'landing.test',
+    path: '/landing',
+    handler: 'landing.index',
+    config: {
+      auth: false,
+    },
+  },
+  {
+    method: 'GET',
+    path: '/landing/team-members',
+    handler: 'landing.teamMembers',
     config: {
       auth: false,
     },

@@ -1,8 +1,8 @@
 export default [
   {
     method: 'GET',
-    path: '/guest/test',
-    handler: 'guest.test',
+    path: '/landing', ///test
+    handler: 'landing.test',
     config: {
       auth: false,
     },

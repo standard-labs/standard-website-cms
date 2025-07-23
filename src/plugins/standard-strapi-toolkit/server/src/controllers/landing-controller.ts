@@ -1,13 +1,13 @@
 import type { Core } from '@strapi/strapi';
 
-const guest = ({ strapi }: { strapi: Core.Strapi }) => ({
+const landing = ({ strapi }: { strapi: Core.Strapi }) => ({
   test(ctx) {
     ctx.body = strapi
       .plugin('standard-strapi-toolkit')
       // the name of the service file & the method.
-      .service('guest')
+      .service('landing')
       .getWelcomeMessage();
   },
 });
 
-export default guest;
+export default landing;

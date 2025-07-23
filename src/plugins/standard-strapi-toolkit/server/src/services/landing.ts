@@ -6,14 +6,31 @@ const landing = ({ strapi }: { strapi: Core.Strapi }) => ({
   },
 
 
-  async getTeamMembers() {
-    const members = await strapi.entityService.findMany('api::team-member.team-member');
+  async getTeamMembers(ctx: any) {
+    const members = await strapi.entityService.findMany('api::team-member.team-member', {
+      populate: ['avatar'],
+    });
     const sortedMembers = members.sort((a, b) => a.displayOrder - b.displayOrder);
 
+    const serverUrl = `${ctx.request.protocol}://${ctx.request.host}`;
+    const formattedMember = sortedMembers.map((member) => {
+      const thumbnailUrl = member.avatar?.formats?.thumbnail?.url || member.avatar?.url || null;
+
+      return {
+        ...member,
+        avatar: undefined,
+        avatarUrl: thumbnailUrl ? (serverUrl + thumbnailUrl) : null,
+      };
+    });
+
     return {
-      founders: sortedMembers.filter(member => member.type === 'FOUNDER'),
-      humans: sortedMembers.filter(member => member.type === 'HUMAN'),
-      aiAgents: sortedMembers.filter(member => member.type === 'AI_AGENT'),
+      statusCode: 200,
+      success: true,
+      serverUrl,
+      message: "All team members fetched successfully.",
+      founders: formattedMember.filter(member => member.type === 'FOUNDER'),
+      humans: formattedMember.filter(member => member.type === 'HUMAN'),
+      aiAgents: formattedMember.filter(member => member.type === 'AI_AGENT'),
     };
   },
 });

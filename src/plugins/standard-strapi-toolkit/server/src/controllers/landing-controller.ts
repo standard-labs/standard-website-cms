@@ -16,7 +16,7 @@ const landing = ({ strapi }: { strapi: Core.Strapi }) => ({
     ctx.body = await strapi
       .plugin(PLUGIN_ID)
       .service(service)
-      .getTeamMembers();
+      .getTeamMembers(ctx);
   },
 });
 

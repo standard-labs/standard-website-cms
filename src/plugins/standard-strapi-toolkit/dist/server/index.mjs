@@ -35,8 +35,18 @@ const controller = ({ strapi }) => ({
     ctx.body = strapi.plugin("standard-strapi-toolkit").service("service").getWelcomeMessage();
   }
 });
+const service$1 = "landing";
+const landing$1 = ({ strapi }) => ({
+  index(ctx) {
+    ctx.body = strapi.plugin(PLUGIN_ID).service(service$1).getWelcomeMessage();
+  },
+  async teamMembers(ctx) {
+    ctx.body = await strapi.plugin(PLUGIN_ID).service(service$1).getTeamMembers(ctx);
+  }
+});
 const controllers = {
-  controller
+  controller,
+  landing: landing$1
 };
 const middlewares = {};
 const policies = {};
@@ -47,7 +57,26 @@ const contentAPIRoutes = [
     // name of the controller file & the method.
     handler: "controller.index",
     config: {
-      policies: []
+      auth: false
+      // policies: [],
+    }
+  }
+];
+const landingAPIRoutes = [
+  {
+    method: "GET",
+    path: "/landing",
+    handler: "landing.index",
+    config: {
+      auth: false
+    }
+  },
+  {
+    method: "GET",
+    path: "/landing/team-members",
+    handler: "landing.teamMembers",
+    config: {
+      auth: false
     }
   }
 ];
@@ -55,15 +84,49 @@ const routes = {
   "content-api": {
     type: "content-api",
     routes: contentAPIRoutes
+  },
+  "landing": {
+    type: "content-api",
+    routes: landingAPIRoutes
   }
 };
+const landing = ({ strapi }) => ({
+  getWelcomeMessage() {
+    return "Welcome to Standard-Strapi-Toolkit Landing  🚀";
+  },
+  async getTeamMembers(ctx) {
+    const members = await strapi.entityService.findMany("api::team-member.team-member", {
+      populate: ["avatar"]
+    });
+    const sortedMembers = members.sort((a, b) => a.displayOrder - b.displayOrder);
+    const serverUrl = `${ctx.request.protocol}://${ctx.request.host}`;
+    const formattedMember = sortedMembers.map((member) => {
+      const thumbnailUrl = member.avatar?.formats?.thumbnail?.url || member.avatar?.url || null;
+      return {
+        ...member,
+        avatar: void 0,
+        avatarUrl: thumbnailUrl ? serverUrl + thumbnailUrl : null
+      };
+    });
+    return {
+      statusCode: 200,
+      success: true,
+      serverUrl,
+      message: "All team members fetched successfully.",
+      founders: formattedMember.filter((member) => member.type === "FOUNDER"),
+      humans: formattedMember.filter((member) => member.type === "HUMAN"),
+      aiAgents: formattedMember.filter((member) => member.type === "AI_AGENT")
+    };
+  }
+});
 const service = ({ strapi }) => ({
   getWelcomeMessage() {
-    return "Welcome to Strapi 🚀";
+    return "Welcome to Standard-Strapi-Toolkit 🚀";
   }
 });
 const services = {
-  service
+  service,
+  landing
 };
 const index = {
   register,

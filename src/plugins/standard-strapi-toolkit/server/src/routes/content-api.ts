@@ -5,7 +5,8 @@ export default [
     // name of the controller file & the method.
     handler: 'controller.index',
     config: {
-      policies: [],
+      auth: false,
+      // policies: [],
     },
   },
 ];

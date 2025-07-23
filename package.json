@@ -4,7 +4,8 @@
   "private": true,
   "description": "A Strapi application",
   "scripts": {
-    "build": "npm i && npx tsx seed/index.ts && strapi build",
+    "postinstall": "patch-package || true",
+    "build": "sh scripts/custom-build.sh",
     "console": "strapi console",
     "deploy": "strapi deploy",
     "dev": "strapi develop",

@@ -1,7 +1,7 @@
 import fs from 'fs-extra';
 import path from 'path';
 import mime from 'mime-types';
-import { createStrapi, compileStrapi } from '@strapi/strapi';
+import { Core, createStrapi, compileStrapi } from '@strapi/strapi';
 
 import authors from './data/authors';
 import books from './data/books';
@@ -50,10 +50,10 @@ function getFileSize(filePath: string): number {
 
 
 // Prepares file metadata (path, size, type) for upload
-function prepareFileMetadata(fileName: string) {
-  const filePath = path.resolve(__dirname, 'files', fileName);
+function prepareFileMetadata(fileName: string, folder = '') {
+  const filePath = path.resolve(__dirname, 'files', folder, fileName);
   const fileSize = getFileSize(filePath);
-  const extension = path.extname(fileName).slice(1); // safer extraction
+  const extension = path.extname(fileName).slice(1);
   const mimeType = mime.lookup(extension) || 'application/octet-stream';
 
   return {
@@ -65,8 +65,28 @@ function prepareFileMetadata(fileName: string) {
 }
 
 
+async function getOrCreateFolder(folderName: string, parentFolderId?: number): Promise<number> {
+  const existingFolder = await strapi.query('plugin::upload.folder').findOne({
+    where: { name: folderName },
+  });
+
+  if (existingFolder) {
+    return existingFolder;
+  }
+
+  const newFolder = await strapi.query('plugin::upload.folder').create({
+    data: {
+      name: folderName,
+      parent: parentFolderId || null,
+    },
+  });
+
+  return newFolder;
+}
+
 // Uploads a file to Strapi using the Upload plugin
-async function uploadToStrapi(file: any, displayName: string) {
+async function uploadToStrapi(file: any, displayName: string, folder: string) {
+  const folderData = await getOrCreateFolder(folder);
   return strapi.plugin('upload').service('upload').upload({
     files: file,
     data: {
@@ -75,6 +95,7 @@ async function uploadToStrapi(file: any, displayName: string) {
         alternativeText: `Uploaded image: ${displayName}`,
         caption: displayName,
       },
+      folder: folderData,
     },
   });
 }
@@ -100,7 +121,10 @@ async function createContentEntry({
 }
 
 // Ensures files are uploaded or linked, returning existing or newly uploaded files
-async function ensureFilesUploaded(files: string[]): Promise<any> {
+async function ensureFilesUploaded(
+  files: string[],
+  folder: string,
+): Promise<any[]> {
   const existingFiles: any[] = [];
   const uploadedFiles: any[] = [];
 
@@ -114,9 +138,9 @@ async function ensureFilesUploaded(files: string[]): Promise<any> {
     if (fileWhereName) {
       existingFiles.push(fileWhereName);
     } else {
-      const fileData = prepareFileMetadata(fileName);
+      const fileData = prepareFileMetadata(fileName, folder);
       const fileNameNoExtension = fileName.split('.').shift()!;
-      const [file] = await uploadToStrapi(fileData, fileNameNoExtension);
+      const [file] = await uploadToStrapi(fileData, fileNameNoExtension, folder);
       uploadedFiles.push(file);
     }
   }
@@ -126,7 +150,7 @@ async function ensureFilesUploaded(files: string[]): Promise<any> {
 
 
 // Updates media-related block components by uploading or linking associated files
-async function processMediaBlocks(blocks: any[]): Promise<any[]> {
+async function processMediaBlocks(blocks: any[], folder: string): Promise<any[]> {
   const result: any[] = [];
 
   for (const block of blocks) {
@@ -134,13 +158,13 @@ async function processMediaBlocks(blocks: any[]): Promise<any[]> {
 
     switch (block.__component) {
       case 'shared.media': {
-        const [file] = await ensureFilesUploaded([block.file]);
+        const [file] = await ensureFilesUploaded([block.file], folder);
         updatedBlock.file = file;
         break;
       }
 
       case 'shared.slider': {
-        const uploaded = await ensureFilesUploaded(block.files);
+        const uploaded = await ensureFilesUploaded(block.files, folder);
         updatedBlock.files = uploaded;
         break;
       }
@@ -160,7 +184,7 @@ async function processMediaBlocks(blocks: any[]): Promise<any[]> {
 // Imports authors with uploaded cover image and processed media blocks
 async function seedAuthors(): Promise<void> {
   for (const author of authors) {
-    const [uploadedAvatar] = await ensureFilesUploaded([author.avatar]);
+    const [uploadedAvatar] = await ensureFilesUploaded([author.avatar], '');
     await createContentEntry({
       modelName: 'author',
       data: {
@@ -175,8 +199,8 @@ async function seedAuthors(): Promise<void> {
 // Imports articles with uploaded cover image and processed media blocks
 async function seedArticles(): Promise<void> {
   for (const article of articles) {
-    const [uploadedCover] = await ensureFilesUploaded([article.cover]);
-    const enrichedBlocks = await processMediaBlocks(article.blocks);
+    const [uploadedCover] = await ensureFilesUploaded([article.cover], '');
+    const enrichedBlocks = await processMediaBlocks(article.blocks, '');
 
     await createContentEntry({
       modelName: 'article',
@@ -219,7 +243,7 @@ async function seedCategories(): Promise<void> {
 // Imports teamMembers with uploaded cover image and processed media blocks
 async function seedTeamMembers(): Promise<void> {
   for (const teamMember of teamMembers) {
-    const [uploadedAvatar] = await ensureFilesUploaded([teamMember.avatar]);
+    const [uploadedAvatar] = await ensureFilesUploaded([teamMember.avatar], '');
 
     await createContentEntry({
       modelName: 'team-member',

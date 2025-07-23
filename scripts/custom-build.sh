@@ -6,4 +6,5 @@ echo "🏗️  Building Strapi..."
 npx strapi build
 
 echo "🌱 Seeding data..."
-npx tsx seed/index.ts
+npx tsc seed/index.ts --outDir seed --esModuleInterop
+node seed-dist/index.js

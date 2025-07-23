@@ -39,3 +39,4 @@ const SimpleTags = ({ label, name, intlLabel, attribute }) => {
 export {
   SimpleTags as default
 };
+//# sourceMappingURL=input-B1N-tHVV.mjs.map

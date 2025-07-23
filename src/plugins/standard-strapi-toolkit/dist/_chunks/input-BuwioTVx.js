@@ -39,3 +39,4 @@ const SimpleTags = ({ label, name, intlLabel, attribute }) => {
   );
 };
 exports.default = SimpleTags;
+//# sourceMappingURL=input-BuwioTVx.js.map

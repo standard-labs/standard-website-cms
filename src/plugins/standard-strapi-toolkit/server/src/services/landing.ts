@@ -19,7 +19,7 @@ const landing = ({ strapi }: { strapi: Core.Strapi }) => ({
       return {
         ...member,
         avatar: undefined,
-        avatarUrl: thumbnailUrl ? (serverUrl + thumbnailUrl) : null,
+        avatarUrl: thumbnailUrl ? (thumbnailUrl) : null,
       };
     });
 

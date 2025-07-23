@@ -106,7 +106,7 @@ const landing = ({ strapi }) => ({
       return {
         ...member,
         avatar: void 0,
-        avatarUrl: thumbnailUrl ? serverUrl + thumbnailUrl : null
+        avatarUrl: thumbnailUrl ? thumbnailUrl : null
       };
     });
     return {

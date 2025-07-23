@@ -4,7 +4,6 @@
   "private": true,
   "description": "A Strapi application",
   "scripts": {
-    "postinstall": "patch-package || true",
     "build": "sh scripts/build.sh",
     "console": "strapi console",
     "deploy": "strapi deploy",
@@ -22,7 +21,6 @@
     "@strapi/plugin-users-permissions": "5.18.0",
     "@strapi/strapi": "5.18.0",
     "better-sqlite3": "11.3.0",
-    "lodash": "^4.17.21",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
     "react-router-dom": "^6.0.0",

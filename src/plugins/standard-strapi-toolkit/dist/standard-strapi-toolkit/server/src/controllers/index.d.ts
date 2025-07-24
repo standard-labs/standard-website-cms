@@ -9,6 +9,10 @@ declare const _default: {
     }) => {
         index(ctx: any): void;
         teamMembers(ctx: any): Promise<void>;
+        articles(ctx: any): Promise<void>;
+        articleDetail(ctx: any): Promise<void>;
+        books(ctx: any): Promise<void>;
+        bookDetail(ctx: any): Promise<void>;
     };
 };
 export default _default;

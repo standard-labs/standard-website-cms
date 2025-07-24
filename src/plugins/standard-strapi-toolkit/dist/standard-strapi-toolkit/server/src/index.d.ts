@@ -23,6 +23,10 @@ declare const _default: {
         }) => {
             index(ctx: any): void;
             teamMembers(ctx: any): Promise<void>;
+            articles(ctx: any): Promise<void>;
+            articleDetail(ctx: any): Promise<void>;
+            books(ctx: any): Promise<void>;
+            bookDetail(ctx: any): Promise<void>;
         };
     };
     routes: {
@@ -65,11 +69,43 @@ declare const _default: {
             getTeamMembers(ctx: any): Promise<{
                 statusCode: number;
                 success: boolean;
-                serverUrl: string;
                 message: string;
                 founders: any;
                 humans: any;
                 aiAgents: any;
+                mainAiAgent: any;
+            }>;
+            getArticles(ctx: any): Promise<{
+                statusCode: number;
+                success: boolean;
+                message: string;
+                articles: any;
+            }>;
+            getArticleDetail(ctx: any): Promise<{
+                statusCode: number;
+                success: boolean;
+                message: string;
+                article: any;
+            }>;
+            getBooks(ctx: any): Promise<{
+                statusCode: number;
+                success: boolean;
+                message: string;
+                books: ({
+                    id: import("@strapi/types/dist/data").ID;
+                } & {
+                    [key: string]: any;
+                }) | ({
+                    id: import("@strapi/types/dist/data").ID;
+                } & {
+                    [key: string]: any;
+                })[];
+            }>;
+            getBookDetail(ctx: any): Promise<{
+                statusCode: number;
+                success: boolean;
+                message: string;
+                book: any;
             }>;
         };
     };

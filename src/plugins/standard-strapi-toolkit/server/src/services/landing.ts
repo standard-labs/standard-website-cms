@@ -145,6 +145,29 @@ const landing = ({ strapi }: { strapi: Core.Strapi }) => ({
   },
 
 
+  async getBookDetail(ctx: any) {
+    const { slug } = ctx.params;
+
+    const books = await strapi.entityService.findMany('api::book.book', {
+      filters: { slug },
+      limit: 1,
+    });
+
+    const book = books?.[0];
+
+    if (!book) {
+      ctx.notFound("Book not found");
+      return;
+    }
+
+    return {
+      statusCode: 200,
+      success: true,
+      message: "Book detail fetched successfully.",
+      book,
+    };
+  },
+
 });
 
 export default landing;

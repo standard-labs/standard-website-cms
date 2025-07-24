@@ -18,5 +18,5 @@ export interface Article {
 
 export interface ArticleBlock {
   __component: 'shared.media' | 'shared.quote' | 'shared.rich-text' | 'shared.slider';
-  content: string;
+  body: string;
 }

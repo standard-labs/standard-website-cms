@@ -79,45 +79,54 @@ const landing = ({ strapi }: { strapi: Core.Strapi }) => ({
 
 
   async getArticleDetail(ctx: any) {
+    const { slug } = ctx.params;
+
     const articles = await strapi.entityService.findMany('api::article.article', {
+      filters: { slug },
       populate: {
         cover: true,
         category: true,
+        blocks: true,
         author: {
           populate: {
             avatar: true,
           }
         },
       },
-      sort: [{ publishedOn: 'desc' }],
+      limit: 1,
     });
+
+    const article = articles?.[0];
+
+    if (!article) {
+      ctx.notFound("Article not found");
+      return;
+    }
 
     const serverUrl = getServerUrl(ctx, strapi);
-    const articlesWithCoverAndAvatarUrl = articles.map((article) => {
-      const coverThumbUrl = article.cover?.formats?.thumbnail?.url || article.cover?.url;
-      const avatarThumbUrl = article.author?.avatar?.formats?.thumbnail?.url || article.author?.avatar?.url;
 
-      return {
-        ...article,
-        cover: undefined,
-        coverUrl: coverThumbUrl ? serverUrl + coverThumbUrl : null,
+    const coverThumbUrl = article.cover?.formats?.thumbnail?.url || article.cover?.url;
+    const avatarThumbUrl = article.author?.avatar?.formats?.thumbnail?.url || article.author?.avatar?.url;
 
-        author: {
-          ...article.author,
-          avatar: undefined,
-          avatarUrl: avatarThumbUrl ? serverUrl + avatarThumbUrl : null,
-        },
-      };
-    });
-
+    const formattedArticle = {
+      ...article,
+      cover: undefined,
+      coverUrl: coverThumbUrl ? serverUrl + coverThumbUrl : null,
+      author: {
+        ...article.author,
+        avatar: undefined,
+        avatarUrl: avatarThumbUrl ? serverUrl + avatarThumbUrl : null,
+      },
+    };
 
     return {
       statusCode: 200,
       success: true,
-      message: "Articles detail fetched successfully.",
-      // articles: articlesWithCoverAndAvatarUrl,
+      message: "Article detail fetched successfully.",
+      article: formattedArticle,
     };
-  },
+  }
+
 });
 
 export default landing;

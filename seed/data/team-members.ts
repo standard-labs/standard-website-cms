@@ -198,7 +198,7 @@ export default [
     name: "Manuel Velez",
     role: "Prospect Advisor",
     tagline: "Starting important conversations",
-    avatar: "mannuel-avatar.png",
+    avatar: "manuel-avatar.png",
     linkedinUrl: null,
     type: "HUMAN",
     displayOrder: 16,

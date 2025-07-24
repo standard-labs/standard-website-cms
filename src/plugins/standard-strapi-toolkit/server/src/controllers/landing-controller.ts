@@ -32,6 +32,13 @@ const landing = ({ strapi }: { strapi: Core.Strapi }) => ({
       .service(service)
       .getArticleDetail(ctx);
   },
+
+  async books(ctx) {
+    ctx.body = await strapi
+      .plugin(PLUGIN_ID)
+      .service(service)
+      .getBooks(ctx);
+  },
 });
 
 export default landing;

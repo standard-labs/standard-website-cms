@@ -31,4 +31,12 @@ export default [
       auth: false,
     },
   },
+  {
+    method: 'GET',
+    path: '/landing/books',
+    handler: 'landing.books',
+    config: {
+      auth: false,
+    },
+  },
 ];

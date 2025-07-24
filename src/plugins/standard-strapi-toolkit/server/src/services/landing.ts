@@ -9,9 +9,11 @@ const landing = ({ strapi }: { strapi: Core.Strapi }) => ({
 
   async getTeamMembers(ctx: any) {
     const members = await strapi.entityService.findMany('api::team-member.team-member', {
+      filters: { isVisible: true },
       populate: ['avatar'],
+      sort: [{ displayOrder: 'asc' }],
     });
-    members.sort((a, b) => a.displayOrder - b.displayOrder);
+    // members.sort((a, b) => a.displayOrder - b.displayOrder);
 
     const serverUrl = getServerUrl(ctx, strapi);
     const membersWithAvatarUrl = members.map((member) => {
@@ -125,7 +127,23 @@ const landing = ({ strapi }: { strapi: Core.Strapi }) => ({
       message: "Article detail fetched successfully.",
       article: formattedArticle,
     };
-  }
+  },
+
+
+  async getBooks(ctx: any) {
+    const books = await strapi.entityService.findMany('api::book.book', {
+      filters: { isVisible: true },
+      sort: [{ displayOrder: 'asc' }],
+    });
+
+    return {
+      statusCode: 200,
+      success: true,
+      message: "All books fetched successfully.",
+      books,
+    };
+  },
+
 
 });
 

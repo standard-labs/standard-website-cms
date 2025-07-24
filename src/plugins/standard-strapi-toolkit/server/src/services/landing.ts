@@ -1,4 +1,5 @@
 import type { Core } from '@strapi/strapi';
+import { getServerUrl } from '../../../lib/utils';
 
 const landing = ({ strapi }: { strapi: Core.Strapi }) => ({
   getWelcomeMessage() {
@@ -12,21 +13,20 @@ const landing = ({ strapi }: { strapi: Core.Strapi }) => ({
     });
     const sortedMembers = members.sort((a, b) => a.displayOrder - b.displayOrder);
 
-    const serverUrl = `${ctx.request.protocol}://${ctx.request.host}`;
+    const serverUrl = getServerUrl(ctx, strapi);
     const formattedMember = sortedMembers.map((member) => {
       const thumbnailUrl = member.avatar?.formats?.thumbnail?.url || member.avatar?.url || null;
 
       return {
         ...member,
         avatar: undefined,
-        avatarUrl: thumbnailUrl ? (thumbnailUrl) : null,
+        avatarUrl: thumbnailUrl ? (serverUrl + thumbnailUrl) : null,
       };
     });
 
     return {
       statusCode: 200,
       success: true,
-      serverUrl,
       message: "All team members fetched successfully.",
       founders: formattedMember.filter(member => member.type === 'FOUNDER'),
       humans: formattedMember.filter(member => member.type === 'HUMAN'),

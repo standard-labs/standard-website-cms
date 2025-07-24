@@ -11,10 +11,10 @@ const landing = ({ strapi }: { strapi: Core.Strapi }) => ({
     const members = await strapi.entityService.findMany('api::team-member.team-member', {
       populate: ['avatar'],
     });
-    const sortedMembers = members.sort((a, b) => a.displayOrder - b.displayOrder);
+    members.sort((a, b) => a.displayOrder - b.displayOrder);
 
     const serverUrl = getServerUrl(ctx, strapi);
-    const formattedMember = sortedMembers.map((member) => {
+    const membersWithAvatarUrl = members.map((member) => {
       const thumbnailUrl = member.avatar?.formats?.thumbnail?.url || member.avatar?.url || null;
 
       return {
@@ -28,9 +28,52 @@ const landing = ({ strapi }: { strapi: Core.Strapi }) => ({
       statusCode: 200,
       success: true,
       message: "All team members fetched successfully.",
-      founders: formattedMember.filter(member => member.type === 'FOUNDER'),
-      humans: formattedMember.filter(member => member.type === 'HUMAN'),
-      aiAgents: formattedMember.filter(member => member.type === 'AI_AGENT'),
+      founders: membersWithAvatarUrl.filter(member => member.type === 'FOUNDER'),
+      humans: membersWithAvatarUrl.filter(member => member.type === 'HUMAN'),
+      aiAgents: membersWithAvatarUrl.filter(member => (member.type === 'AI_AGENT')),
+      mainAiAgent: membersWithAvatarUrl.find(member => member.type === 'MAIN_AI_AGENT'),
+    };
+  },
+
+
+  async getArticles(ctx: any) {
+    const articles = await strapi.entityService.findMany('api::article.article', {
+      populate: {
+        cover: true,
+        category: true,
+        author: {
+          populate: {
+            avatar: true,
+          }
+        },
+      },
+      sort: [{ publishedOn: 'desc' }],
+    });
+
+    const serverUrl = getServerUrl(ctx, strapi);
+    const articlesWithCoverAndAvatarUrl = articles.map((article) => {
+      const coverThumbUrl = article.cover?.formats?.thumbnail?.url || article.cover?.url;
+      const avatarThumbUrl = article.author?.avatar?.formats?.thumbnail?.url || article.author?.avatar?.url;
+
+      return {
+        ...article,
+        cover: undefined,
+        coverUrl: coverThumbUrl ? serverUrl + coverThumbUrl : null,
+
+        author: {
+          ...article.author,
+          avatar: undefined,
+          avatarUrl: avatarThumbUrl ? serverUrl + avatarThumbUrl : null,
+        },
+      };
+    });
+
+
+    return {
+      statusCode: 200,
+      success: true,
+      message: "All team articles fetched successfully.",
+      articles: articlesWithCoverAndAvatarUrl,
     };
   },
 });

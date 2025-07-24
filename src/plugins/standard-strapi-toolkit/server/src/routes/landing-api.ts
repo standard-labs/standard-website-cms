@@ -15,4 +15,12 @@ export default [
       auth: false,
     },
   },
+  {
+    method: 'GET',
+    path: '/landing/articles',
+    handler: 'landing.articles',
+    config: {
+      auth: false,
+    },
+  },
 ];

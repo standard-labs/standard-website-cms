@@ -15,4 +15,36 @@ export default [
       auth: false,
     },
   },
+  {
+    method: 'GET',
+    path: '/landing/articles',
+    handler: 'landing.articles',
+    config: {
+      auth: false,
+    },
+  },
+  {
+    method: 'GET',
+    path: '/landing/articles/:slug',
+    handler: 'landing.articleDetail',
+    config: {
+      auth: false,
+    },
+  },
+  {
+    method: 'GET',
+    path: '/landing/books',
+    handler: 'landing.books',
+    config: {
+      auth: false,
+    },
+  },
+  {
+    method: 'GET',
+    path: '/landing/books/:slug',
+    handler: 'landing.bookDetail',
+    config: {
+      auth: false,
+    },
+  },
 ];

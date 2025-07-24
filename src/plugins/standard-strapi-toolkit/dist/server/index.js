@@ -43,6 +43,18 @@ const landing$1 = ({ strapi }) => ({
   },
   async teamMembers(ctx) {
     ctx.body = await strapi.plugin(PLUGIN_ID).service(service$1).getTeamMembers(ctx);
+  },
+  async articles(ctx) {
+    ctx.body = await strapi.plugin(PLUGIN_ID).service(service$1).getArticles(ctx);
+  },
+  async articleDetail(ctx) {
+    ctx.body = await strapi.plugin(PLUGIN_ID).service(service$1).getArticleDetail(ctx);
+  },
+  async books(ctx) {
+    ctx.body = await strapi.plugin(PLUGIN_ID).service(service$1).getBooks(ctx);
+  },
+  async bookDetail(ctx) {
+    ctx.body = await strapi.plugin(PLUGIN_ID).service(service$1).getBookDetail(ctx);
   }
 });
 const controllers = {
@@ -79,6 +91,38 @@ const landingAPIRoutes = [
     config: {
       auth: false
     }
+  },
+  {
+    method: "GET",
+    path: "/landing/articles",
+    handler: "landing.articles",
+    config: {
+      auth: false
+    }
+  },
+  {
+    method: "GET",
+    path: "/landing/articles/:slug",
+    handler: "landing.articleDetail",
+    config: {
+      auth: false
+    }
+  },
+  {
+    method: "GET",
+    path: "/landing/books",
+    handler: "landing.books",
+    config: {
+      auth: false
+    }
+  },
+  {
+    method: "GET",
+    path: "/landing/books/:slug",
+    handler: "landing.bookDetail",
+    config: {
+      auth: false
+    }
   }
 ];
 const routes = {
@@ -91,32 +135,144 @@ const routes = {
     routes: landingAPIRoutes
   }
 };
+function getServerUrl(ctx, strapi) {
+  const { request } = ctx;
+  const isDevelopment = strapi.config.get("environment") === "development";
+  return isDevelopment ? `${request.protocol}://${request.host}` : "";
+}
 const landing = ({ strapi }) => ({
   getWelcomeMessage() {
     return "Welcome to Standard-Strapi-Toolkit Landing  🚀";
   },
   async getTeamMembers(ctx) {
     const members = await strapi.entityService.findMany("api::team-member.team-member", {
-      populate: ["avatar"]
+      filters: { isVisible: true },
+      populate: ["avatar"],
+      sort: [{ displayOrder: "asc" }]
     });
-    const sortedMembers = members.sort((a, b) => a.displayOrder - b.displayOrder);
-    const serverUrl = `${ctx.request.protocol}://${ctx.request.host}`;
-    const formattedMember = sortedMembers.map((member) => {
+    const serverUrl = getServerUrl(ctx, strapi);
+    const membersWithAvatarUrl = members.map((member) => {
       const thumbnailUrl = member.avatar?.formats?.thumbnail?.url || member.avatar?.url || null;
       return {
         ...member,
         avatar: void 0,
-        avatarUrl: thumbnailUrl ? thumbnailUrl : null
+        avatarUrl: thumbnailUrl ? serverUrl + thumbnailUrl : null
       };
     });
     return {
       statusCode: 200,
       success: true,
-      serverUrl,
       message: "All team members fetched successfully.",
-      founders: formattedMember.filter((member) => member.type === "FOUNDER"),
-      humans: formattedMember.filter((member) => member.type === "HUMAN"),
-      aiAgents: formattedMember.filter((member) => member.type === "AI_AGENT")
+      founders: membersWithAvatarUrl.filter((member) => member.type === "FOUNDER"),
+      humans: membersWithAvatarUrl.filter((member) => member.type === "HUMAN"),
+      aiAgents: membersWithAvatarUrl.filter((member) => member.type === "AI_AGENT"),
+      mainAiAgent: membersWithAvatarUrl.find((member) => member.type === "MAIN_AI_AGENT")
+    };
+  },
+  async getArticles(ctx) {
+    const articles = await strapi.entityService.findMany("api::article.article", {
+      populate: {
+        cover: true,
+        category: true,
+        author: {
+          populate: {
+            avatar: true
+          }
+        }
+      },
+      sort: [{ publishedOn: "desc" }]
+    });
+    const serverUrl = getServerUrl(ctx, strapi);
+    const articlesWithCoverAndAvatarUrl = articles.map((article) => {
+      const coverThumbUrl = article.cover?.formats?.thumbnail?.url || article.cover?.url;
+      const avatarThumbUrl = article.author?.avatar?.formats?.thumbnail?.url || article.author?.avatar?.url;
+      return {
+        ...article,
+        cover: void 0,
+        coverUrl: coverThumbUrl ? serverUrl + coverThumbUrl : null,
+        author: {
+          ...article.author,
+          avatar: void 0,
+          avatarUrl: avatarThumbUrl ? serverUrl + avatarThumbUrl : null
+        }
+      };
+    });
+    return {
+      statusCode: 200,
+      success: true,
+      message: "All articles fetched successfully.",
+      articles: articlesWithCoverAndAvatarUrl
+    };
+  },
+  async getArticleDetail(ctx) {
+    const { slug } = ctx.params;
+    const articles = await strapi.entityService.findMany("api::article.article", {
+      filters: { slug },
+      populate: {
+        cover: true,
+        category: true,
+        blocks: true,
+        author: {
+          populate: {
+            avatar: true
+          }
+        }
+      },
+      limit: 1
+    });
+    const article = articles?.[0];
+    if (!article) {
+      ctx.notFound("Article not found");
+      return;
+    }
+    const serverUrl = getServerUrl(ctx, strapi);
+    const coverThumbUrl = article.cover?.formats?.thumbnail?.url || article.cover?.url;
+    const avatarThumbUrl = article.author?.avatar?.formats?.thumbnail?.url || article.author?.avatar?.url;
+    const formattedArticle = {
+      ...article,
+      cover: void 0,
+      coverUrl: coverThumbUrl ? serverUrl + coverThumbUrl : null,
+      author: {
+        ...article.author,
+        avatar: void 0,
+        avatarUrl: avatarThumbUrl ? serverUrl + avatarThumbUrl : null
+      }
+    };
+    return {
+      statusCode: 200,
+      success: true,
+      message: "Article detail fetched successfully.",
+      article: formattedArticle
+    };
+  },
+  async getBooks(ctx) {
+    const books = await strapi.entityService.findMany("api::book.book", {
+      filters: { isVisible: true },
+      sort: [{ displayOrder: "asc" }]
+    });
+    return {
+      statusCode: 200,
+      success: true,
+      message: "All books fetched successfully.",
+      books
+    };
+  },
+  async getBookDetail(ctx) {
+    const { slug } = ctx.params;
+    const books = await strapi.entityService.findMany("api::book.book", {
+      filters: { slug },
+      limit: 1
+    });
+    const book = books?.[0];
+    if (!book) {
+      ctx.notFound("Book not found");
+      return;
+    }
+    return {
+      statusCode: 200,
+      success: true,
+      message: "Book detail fetched successfully.",
+      book
     };
   }
 });

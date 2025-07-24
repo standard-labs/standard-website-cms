@@ -10,13 +10,13 @@ export interface Article {
   cover: string;
   readingTime: number;
   blocks: Array<ArticleBlock>;
-  author: Author['id'];
-  category: Category['id'];
+  author: Author;
+  category: Category;
   tags: string[];
   publishedOn: Date;
 }
 
 export interface ArticleBlock {
   __component: 'shared.media' | 'shared.quote' | 'shared.rich-text' | 'shared.slider';
-  content: string;
+  body: string;
 }

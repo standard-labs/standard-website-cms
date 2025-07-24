@@ -23,4 +23,12 @@ export default [
       auth: false,
     },
   },
+  {
+    method: 'GET',
+    path: '/landing/articles/:slug',
+    handler: 'landing.articleDetail',
+    config: {
+      auth: false,
+    },
+  },
 ];

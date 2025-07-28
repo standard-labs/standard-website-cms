@@ -6,7 +6,9 @@ const destroy = ({ strapi }) => {
 const PLUGIN_ID = "standard-strapi-toolkit";
 const CUSTOM_FIELDS_IDS_MAP = {
   simple_tags: "simple-tags",
-  multi_tags: "multi-tags"
+  multi_tags: "multi-tags",
+  color_picker: "color-picker",
+  icon_picker: "icon-picker"
 };
 const register = ({ strapi }) => {
   strapi.customFields.register({
@@ -23,6 +25,16 @@ const register = ({ strapi }) => {
     plugin: PLUGIN_ID,
     name: CUSTOM_FIELDS_IDS_MAP.multi_tags,
     type: "json"
+  });
+  strapi.customFields.register({
+    plugin: PLUGIN_ID,
+    name: CUSTOM_FIELDS_IDS_MAP.color_picker,
+    type: "string"
+  });
+  strapi.customFields.register({
+    plugin: PLUGIN_ID,
+    name: CUSTOM_FIELDS_IDS_MAP.icon_picker,
+    type: "string"
   });
 };
 const config = {

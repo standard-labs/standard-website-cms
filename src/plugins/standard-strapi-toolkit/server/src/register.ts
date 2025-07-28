@@ -26,7 +26,7 @@ const register = ({ strapi }: { strapi: Core.Strapi }) => {
   strapi.customFields.register({
     plugin: PLUGIN_ID,
     name: CUSTOM_FIELDS_IDS_MAP.color_picker,
-    type: 'json'
+    type: 'string'
   });
 };
 

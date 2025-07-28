@@ -40,7 +40,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>((props, ref) => {
           value={value}
           required={required}
           onChange={handleChange}
-          style={{ width: "100%", height: '50px' }}
+          style={{ width: "100%", height: '38px', padding: '2px' }}
         />
 
         <Field.Hint />

@@ -3,7 +3,7 @@ import { CUSTOM_FIELDS_IDS_MAP } from '../../../../lib/custom-fields';
 import Icon from './icon';
 
 
-export const FIELD_ID = CUSTOM_FIELDS_IDS_MAP.color_picker;
+export const FIELD_ID = CUSTOM_FIELDS_IDS_MAP.icon_picker;
 
 export default {
   name: FIELD_ID,

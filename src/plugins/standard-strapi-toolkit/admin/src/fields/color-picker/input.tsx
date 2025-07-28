@@ -1,41 +1,53 @@
+import { Field, Flex } from "@strapi/design-system";
+import { useField } from "@strapi/strapi/admin";
 import * as React from "react";
 import { useIntl } from "react-intl";
 
 type InputProps = {
+  label: string;
   attribute: { type: string };
   disabled: boolean;
   intlLabel: { id: string; defaultMessage: string };
   name: string;
-  onChange: (e: { target: { name: string; type: string; value: any } }) => void;
   required: boolean;
-  value: string;
+  description?: { id: string; defaultMessage: string };
 };
 
 const Input = React.forwardRef<HTMLInputElement, InputProps>((props, ref) => {
-  const { attribute, disabled, intlLabel, name, onChange, required, value } = props;
+  const { label, attribute, description, disabled, intlLabel, name, required } = props;
+  const { onChange, value = '', error } = useField<''>(name);
 
   const { formatMessage } = useIntl();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    onChange({
-      target: { name, type: attribute.type, value: e.currentTarget.value },
-    });
+    onChange({ target: { name, type: attribute.type, value: e.currentTarget.value } } as any);
   };
 
   return (
-    <label style={{ display: "block" }}>
-      {/* {formatMessage(intlLabel)} */}
-      <input
-        ref={ref}
-        type="color"
-        name={name}
-        disabled={disabled}
-        value={value}
-        required={required}
-        onChange={handleChange}
-        style={{ width: "100%", marginTop: 4 }}
-      />
-    </label>
+    <Field.Root
+      id={name}
+      name={name}
+      hint={description?.defaultMessage}
+      error={error}
+    >
+      <Flex direction="column" alignItems="stretch" gap={2}>
+        <Field.Label>{intlLabel?.id ? formatMessage(intlLabel) : label}</Field.Label>
+
+        <input
+          ref={ref}
+          type="color"
+          name={name}
+          disabled={disabled}
+          value={value}
+          required={required}
+          onChange={handleChange}
+          style={{ width: "100%", marginTop: 4 }}
+        />
+
+        <Field.Hint />
+        <Field.Error />
+      </Flex>
+    </Field.Root>
   );
 });
 

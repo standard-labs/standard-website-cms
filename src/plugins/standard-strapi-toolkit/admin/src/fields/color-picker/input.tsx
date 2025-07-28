@@ -32,8 +32,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>((props, ref) => {
     >
       <Flex direction="column" alignItems="stretch" gap={2}>
         <Field.Label>{intlLabel?.id ? formatMessage(intlLabel) : label}</Field.Label>
-
-        <input
+        <Field.Input
           ref={ref}
           type="color"
           name={name}
@@ -41,7 +40,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>((props, ref) => {
           value={value}
           required={required}
           onChange={handleChange}
-          style={{ width: "100%", marginTop: 4 }}
+          style={{ width: "100%", height: '50px' }}
         />
 
         <Field.Hint />

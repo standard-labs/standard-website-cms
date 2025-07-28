@@ -28,10 +28,12 @@
       "type": "string"
     },
     "color": {
-      "type": "string"
+      "type": "customField",
+      "customField": "plugin::standard-strapi-toolkit.color-picker"
     },
     "icon": {
-      "type": "string"
+      "type": "customField",
+      "customField": "plugin::standard-strapi-toolkit.icon-picker"
     },
     "coverDetail": {
       "type": "string"

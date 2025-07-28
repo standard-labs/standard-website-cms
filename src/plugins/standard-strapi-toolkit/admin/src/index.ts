@@ -4,6 +4,8 @@ import { PluginIcon } from './components/PluginIcon';
 import multiSelectRegisterAdmin from './fields/multi-select/register-admin';
 import simpleTagsRegisterAdmin from './fields/simple-tags/register-admin';
 import multiTagsRegisterAdmin from './fields/multi-tags/register-admin';
+import colorPickerRegisterAdmin from './fields/color-picker/register-admin';
+import iconPickerRegisterAdmin from './fields/icon-picker/register-admin';
 
 export default {
   register(app: any) {
@@ -34,6 +36,16 @@ export default {
     app.customFields.register({
       pluginId: PLUGIN_ID,
       ...multiTagsRegisterAdmin,
+    });
+
+    app.customFields.register({
+      pluginId: PLUGIN_ID,
+      ...colorPickerRegisterAdmin,
+    });
+
+    app.customFields.register({
+      pluginId: PLUGIN_ID,
+      ...iconPickerRegisterAdmin,
     });
 
     app.registerPlugin({

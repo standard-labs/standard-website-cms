@@ -3,7 +3,7 @@ import { CUSTOM_FIELDS_IDS_MAP } from '../../../../lib/custom-fields';
 import Icon from './icon';
 
 
-export const FIELD_ID = CUSTOM_FIELDS_IDS_MAP['multi_tags'];
+export const FIELD_ID = CUSTOM_FIELDS_IDS_MAP.multi_tags;
 
 export default {
   name: FIELD_ID,

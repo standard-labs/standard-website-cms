@@ -76,4 +76,3 @@ const RowTagsInput = ({ label, name, intlLabel, description, attribute }) => {
   );
 };
 exports.default = RowTagsInput;
-//# sourceMappingURL=input-D432vG8N.js.map

@@ -5587,4 +5587,3 @@ const Input2 = ({
 export {
   Input2 as default
 };
-//# sourceMappingURL=input-D6UwkDJG.mjs.map

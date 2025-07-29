@@ -36,4 +36,3 @@ export {
   TagInput as T,
   TagView as a
 };
-//# sourceMappingURL=tag-input-f9S1Y2cG.mjs.map

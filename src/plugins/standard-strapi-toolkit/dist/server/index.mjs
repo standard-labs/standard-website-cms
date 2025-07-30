@@ -177,7 +177,8 @@ const landing = ({ strapi }) => ({
       founders: membersWithAvatarUrl.filter((member) => member.type === "FOUNDER"),
       humans: membersWithAvatarUrl.filter((member) => member.type === "HUMAN"),
       aiAgents: membersWithAvatarUrl.filter((member) => member.type === "AI_AGENT"),
-      mainAiAgent: membersWithAvatarUrl.find((member) => member.type === "MAIN_AI_AGENT")
+      orbitCentralAgent: membersWithAvatarUrl.find((member) => member.type === "ORBIT_CENTRAL_AGENT"),
+      orbitPeripheralAgents: membersWithAvatarUrl.filter((member) => member.type === "ORBIT_PERIPHERAL_AGENT")
     };
   },
   async getArticles(ctx) {

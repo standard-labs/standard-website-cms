@@ -42,7 +42,9 @@
       "enum": [
         "FOUNDER",
         "HUMAN",
-        "AI_AGENT"
+        "AI_AGENT",
+        "ORBIT_CENTRAL_AGENT",
+        "ORBIT_PERIPHERAL_AGENT"
       ]
     },
     "displayOrder": {

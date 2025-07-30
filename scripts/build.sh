@@ -10,6 +10,8 @@ npm run build --prefix ./src/plugins/standard-strapi-toolkit
 echo "🏗️  Building Strapi..."
 npx strapi build
 
+npm i lodash
+
 # echo "📁 Copying static seed files..."
 # cp -r seed/files dist/seed/files
 

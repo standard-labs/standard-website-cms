@@ -11,4 +11,4 @@ export interface TeamMember {
   talkAbout: string[];
 }
 
-export type TeamMemberType = "FOUNDER" | "HUMAN" | "AI_AGENT";
+export type TeamMemberType = "FOUNDER" | "HUMAN" | "AI_AGENT" | "ORBIT_CENTRAL_AGENT" | "ORBIT_PERIPHERAL_AGENT";

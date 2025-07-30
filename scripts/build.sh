@@ -1,11 +1,11 @@
 #!/bin/bash
 
-# echo "🔧 Installing dependencies..."
-# npm install
+echo "🔧 Installing dependencies..."
+npm install
 
 echo "🔧 Building Plugin..."
-# npm install --prefix ./src/plugins/standard-strapi-toolkit
-# npx strapi-plugin build --prefix ./src/plugins/standard-strapi-toolkit
+npm install --prefix ./src/plugins/standard-strapi-toolkit
+npm run build --prefix ./src/plugins/standard-strapi-toolkit
 
 echo "🏗️  Building Strapi..."
 npx strapi build

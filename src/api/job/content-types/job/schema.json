@@ -59,9 +59,6 @@
     "applyUrl": {
       "type": "string"
     },
-    "shareUrl": {
-      "type": "string"
-    },
     "deadline": {
       "type": "date"
     },

@@ -66,6 +66,9 @@ const landing$1 = ({ strapi }) => ({
   },
   async bookDetail(ctx) {
     ctx.body = await strapi.plugin(PLUGIN_ID).service(service$1).getBookDetail(ctx);
+  },
+  async jobs(ctx) {
+    ctx.body = await strapi.plugin(PLUGIN_ID).service(service$1).getJobs(ctx);
   }
 });
 const controllers = {
@@ -131,6 +134,14 @@ const landingAPIRoutes = [
     method: "GET",
     path: "/landing/books/:slug",
     handler: "landing.bookDetail",
+    config: {
+      auth: false
+    }
+  },
+  {
+    method: "GET",
+    path: "/landing/jobs",
+    handler: "landing.jobs",
     config: {
       auth: false
     }
@@ -286,6 +297,18 @@ const landing = ({ strapi }) => ({
       message: "Book detail fetched successfully.",
       book
     };
+  },
+  async getJobs(ctx) {
+    const jobs = await strapi.entityService.findMany("api::job.job", {
+      filters: { isVisible: true },
+      sort: [{ displayOrder: "asc" }]
+    });
+    return {
+      statusCode: 200,
+      success: true,
+      message: "All jobs fetched successfully.",
+      jobs
+    };
   }
 });
 const service = ({ strapi }) => ({
@@ -312,3 +335,4 @@ const index = {
 export {
   index as default
 };
+//# sourceMappingURL=index.mjs.map

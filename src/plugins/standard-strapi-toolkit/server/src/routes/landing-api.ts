@@ -47,4 +47,12 @@ export default [
       auth: false,
     },
   },
+    {
+    method: 'GET',
+    path: '/landing/jobs',
+    handler: 'landing.jobs',
+    config: {
+      auth: false,
+    },
+  },
 ];

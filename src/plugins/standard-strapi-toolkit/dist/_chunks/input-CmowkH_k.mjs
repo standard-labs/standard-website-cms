@@ -76,3 +76,4 @@ const RowTagsInput = ({ label, name, intlLabel, description, attribute }) => {
 export {
   RowTagsInput as default
 };
+//# sourceMappingURL=input-CmowkH_k.mjs.map

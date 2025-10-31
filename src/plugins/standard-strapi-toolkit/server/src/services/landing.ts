@@ -169,6 +169,20 @@ const landing = ({ strapi }: { strapi: Core.Strapi }) => ({
     };
   },
 
+
+  async getJobs(ctx: any) {
+    const jobs = await strapi.entityService.findMany('api::job.job', {
+      filters: { isVisible: true },
+      sort: [{ displayOrder: 'asc' }],
+    });
+
+    return {
+      statusCode: 200,
+      success: true,
+      message: "All jobs fetched successfully.",
+      jobs,
+    };
+  },
 });
 
 export default landing;

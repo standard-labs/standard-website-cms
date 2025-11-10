@@ -1,14 +1,14 @@
 #!/bin/bash
 
-echo "🔧 Installing dependencies..."
-npm install
+# echo "🔧 Installing dependencies..."
+# npm install
 
-echo "🔧 Building Plugin..."
-npm install --prefix ./src/plugins/standard-strapi-toolkit
-npm run build --prefix ./src/plugins/standard-strapi-toolkit
+# echo "🔧 Building Plugin..."
+# npm install --prefix ./src/plugins/standard-strapi-toolkit
+# npm run build --prefix ./src/plugins/standard-strapi-toolkit
 
-echo "🏗️  Building Strapi..."
-npx strapi build
+# echo "🏗️  Building Strapi..."
+# npx strapi build
 
 # npm i lodash
 

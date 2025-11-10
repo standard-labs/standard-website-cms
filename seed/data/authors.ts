@@ -4,16 +4,16 @@ export default [
   {
     id: null,
     name: "Alex Thompson",
-    avatar: "aaron-avatar.png",
+    avatar: "aaron-rafferty-avatar.png",
   },
   {
     id: null,
     name: "Marcus Rodriguez",
-    avatar: "martin-avatar.png",
+    avatar: "martin-simms-avatar.png",
   },
   {
     id: null,
     name: "Sarah Chen",
-    avatar: "samantha-avatar.png",
+    avatar: "samantha-correia-avatar.png",
   },
 ] as Author[];

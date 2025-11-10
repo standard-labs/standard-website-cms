@@ -5,7 +5,7 @@ export default [
   // ============================================================
   // Founders
   {
-    id: 0,
+    id: null,
     name: "Aaron Rafferty",
     tagline: "Grows your business",
     role: "Co-Founder/CEO",
@@ -17,7 +17,7 @@ export default [
     talkAbout: ["Community Building", "DAOs", "Behavioral Science", "AI Efficiency", "Vibe Marketing"]
   },
   {
-    id: 0,
+    id: null,
     name: "Martin Simms",
     tagline: "Optimizes your operations",
     role: "Co-Founder/CFO",
@@ -29,7 +29,7 @@ export default [
     talkAbout: ["Growth Hacking", "Golf", "Stakeholder Theory", "Acquisitions"]
   },
   {
-    id: 0,
+    id: null,
     name: "Prerit Das",
     tagline: "Builds your technology",
     role: "Co-Founder/CTO",
@@ -41,7 +41,7 @@ export default [
     talkAbout: ["AI Agents", "Formula 1", "Venture", "Newsletters", "Vibe Coding"]
   },
   {
-    id: 0,
+    id: null,
     name: "Isaac Nazar",
     tagline: "Connects your ecosystem",
     role: "Co-Founder/Partnerships",
@@ -59,7 +59,7 @@ export default [
 
   // Leadership & Management Roles
   {
-    id: 0,
+    id: null,
     name: "Kyryl Santillan",
     tagline: "Making customers smile",
     role: "Customer Success Lead",
@@ -71,7 +71,7 @@ export default [
     talkAbout: [],
   },
   {
-    id: 0,
+    id: null,
     name: "Kyla Santillan",
     tagline: "Nurturing team growth",
     role: "Head of People",
@@ -83,7 +83,7 @@ export default [
     talkAbout: [],
   },
   {
-    id: 0,
+    id: null,
     name: "Bekh Khoussainov",
     tagline: "Scaling revenue engines",
     role: "VP of Sales",
@@ -95,7 +95,7 @@ export default [
     talkAbout: [],
   },
   {
-    id: 0,
+    id: null,
     name: "Joseph Cederwall",
     tagline: "Weaving compelling narratives",
     role: "Editor In Chief",
@@ -107,7 +107,7 @@ export default [
     talkAbout: [],
   },
   {
-    id: 0,
+    id: null,
     name: "Shirin Unvala",
     tagline: "Covering innovation stories",
     role: "Venture Journalism Editor",
@@ -119,7 +119,7 @@ export default [
     talkAbout: [],
   },
   {
-    id: 0,
+    id: null,
     name: "Vivien Wang",
     tagline: "Crafting venture narratives",
     role: "Venture Journalism Editor",
@@ -131,7 +131,7 @@ export default [
     talkAbout: [],
   },
   {
-    id: 0,
+    id: null,
     name: "Sam Elyaszadeh",
     tagline: "Exploring startup ecosystems",
     role: "Venture Journalism Editor",
@@ -143,7 +143,7 @@ export default [
     talkAbout: [],
   },
   {
-    id: 0,
+    id: null,
     name: "Irina Sahakyan",
     tagline: "Shaping visual identity",
     role: "Lead Designer",
@@ -155,7 +155,7 @@ export default [
     talkAbout: [],
   },
   {
-    id: 0,
+    id: null,
     name: "Barnabas Oretan",
     tagline: "Engineering scalable solutions",
     role: "Lead Software Engineer",
@@ -167,7 +167,7 @@ export default [
     talkAbout: [],
   },
   {
-    id: 0,
+    id: null,
     name: "Asad Rehman",
     tagline: "Leading frontend innovation",
     role: "Frontend Engineering Lead",
@@ -179,7 +179,7 @@ export default [
     talkAbout: [],
   },
   {
-    id: 0,
+    id: null,
     name: "Abhishek Jani",
     tagline: "Leading fullstack development",
     role: "Fullstack Engineering Lead",
@@ -191,7 +191,7 @@ export default [
     talkAbout: [],
   },
   {
-    id: 0,
+    id: null,
     name: "Darshan Tamang",
     tagline: "Placing newsletter ads",
     role: "Partnerships Lead",
@@ -204,7 +204,7 @@ export default [
   },
   // Sales & Business Development
   {
-    id: 0,
+    id: null,
     name: "Samantha Correia",
     tagline: "Building enterprise packages",
     role: "Sales Manager",
@@ -216,7 +216,7 @@ export default [
     talkAbout: [],
   },
   {
-    id: 0,
+    id: null,
     name: "Natalie Brown",
     tagline: "Empowering growing businesses",
     role: "Sales Manager",
@@ -229,7 +229,7 @@ export default [
   },
   // Engineering & Design
   {
-    id: 0,
+    id: null,
     name: "Yeva Aperyan",
     tagline: "Bringing ideas to life",
     role: "Designer",
@@ -241,7 +241,7 @@ export default [
     talkAbout: [],
   },
   {
-    id: 0,
+    id: null,
     name: "Ayush Shah",
     tagline: "Crafting elegant code",
     role: "Software Engineer",
@@ -253,7 +253,7 @@ export default [
     talkAbout: [],
   },
   {
-    id: 0,
+    id: null,
     name: "Javi Cardenas",
     tagline: "Fortifying digital infrastructure",
     role: "Software Engineer",
@@ -265,7 +265,7 @@ export default [
     talkAbout: [],
   },
   {
-    id: 0,
+    id: null,
     name: "Andrew Lou",
     tagline: "Building scalable solutions",
     role: "Software Engineering Intern",
@@ -277,7 +277,7 @@ export default [
     talkAbout: [],
   },
   {
-    id: 0,
+    id: null,
     name: "Jayden Qi",
     tagline: "Learning through innovation",
     role: "Software Engineering Intern",
@@ -289,7 +289,7 @@ export default [
     talkAbout: [],
   },
   {
-    id: 0,
+    id: null,
     name: "Ayush Dodia",
     tagline: "End-to-end development",
     role: "Fullstack Engineer",
@@ -301,7 +301,7 @@ export default [
     talkAbout: [],
   },
   {
-    id: 0,
+    id: null,
     name: "Nithik Pandya",
     tagline: "Full-stack innovation",
     role: "Fullstack Engineer",
@@ -315,7 +315,7 @@ export default [
 
   // Operations & Strategy
   {
-    id: 0,
+    id: null,
     name: "Alisson Chavez",
     tagline: "Driving brand engagement",
     role: "Marketing Director",
@@ -327,7 +327,7 @@ export default [
     talkAbout: [],
   },
   {
-    id: 0,
+    id: null,
     name: "Mia Moynihan",
     tagline: "Managing strategic partnerships",
     role: "Sponsorships Account Manager",
@@ -339,7 +339,7 @@ export default [
     talkAbout: [],
   },
   {
-    id: 0,
+    id: null,
     name: "Ella Deleonn",
     tagline: "Building sponsor relationships",
     role: "Sponsorships Account Manager",
@@ -351,7 +351,7 @@ export default [
     talkAbout: [],
   },
   {
-    id: 0,
+    id: null,
     name: "Lawrence Seriva",
     tagline: "Expanding partnership opportunities",
     role: "Sponsorships Account Manager",
@@ -363,7 +363,7 @@ export default [
     talkAbout: [],
   },
   {
-    id: 0,
+    id: null,
     name: "Dolapo Omoleme",
     tagline: "Amplifying digital presence",
     role: "Social Media Coordinator",
@@ -375,7 +375,7 @@ export default [
     talkAbout: [],
   },
   // {
-  //   id: 0,
+  //   id: null,
   //   name: "Manuel Velez",
   //   tagline: "Starting important conversations",
   //   role: "Prospect Advisor",
@@ -387,7 +387,7 @@ export default [
   //   talkAbout: [],
   // },
   {
-    id: 0,
+    id: null,
     name: "Avani Bansal",
     tagline: "Orchestrating market success",
     role: "GTM Operator",
@@ -399,7 +399,7 @@ export default [
     talkAbout: [],
   },
   {
-    id: 0,
+    id: null,
     name: "Emily Kaplan",
     tagline: "Identifying growth channels",
     role: "GTM Operator",
@@ -411,7 +411,7 @@ export default [
     talkAbout: [],
   },
   {
-    id: 0,
+    id: null,
     name: "Saad Shahid",
     tagline: "Building seamless solutions",
     role: "Full Stack Engineer",
@@ -427,7 +427,7 @@ export default [
   // ============================================================
   // AI-Agents
   {
-    id: 0,
+    id: null,
     name: "Abby",
     tagline: "Supports customers and engages prospects",
     role: "iMessage Assistant",
@@ -439,7 +439,7 @@ export default [
     talkAbout: [],
   },
   {
-    id: 0,
+    id: null,
     name: "Jeeves",
     tagline: "Coordinates all AI operations",
     role: "AI Swarm Orchestrator",
@@ -452,7 +452,7 @@ export default [
     // description: "Jeeves serves as the central AI orchestrator and the primary point of contact for all team members. By coordinating a network of 20 specialized AI agents, Jeeves streamlines workflows, automates routine tasks, and provides instant support across departments. From processing complex data to generating actionable insights, Jeeves helps our team work smarter, not harder, ultimately transforming how we operate our businesses through intelligent automation. <a href='https://jeeves.preritdas.com' target='_blank' rel='noopener noreferrer' class='text-intent hover:underline'>Read more about Jeeves.</a>"
   },
   {
-    id: 0,
+    id: null,
     name: "Reginald",
     tagline: "Interprets complex data",
     role: "Data Analysis",
@@ -464,7 +464,7 @@ export default [
     talkAbout: [],
   },
   {
-    id: 0,
+    id: null,
     name: "Rupert",
     tagline: "Understands your codebase",
     role: "Code Generation",
@@ -476,7 +476,7 @@ export default [
     talkAbout: [],
   },
   {
-    id: 0,
+    id: null,
     name: "Bertie",
     tagline: "Crafts compelling copy",
     role: "Content Creation",
@@ -488,7 +488,7 @@ export default [
     talkAbout: [],
   },
   {
-    id: 0,
+    id: null,
     name: "Madeline",
     tagline: "Monitors business KPIs",
     role: "Business Intelligence",
@@ -500,7 +500,7 @@ export default [
     talkAbout: [],
   },
   {
-    id: 0,
+    id: null,
     name: "Claude",
     tagline: "DALL-E image generation",
     role: "Visual Design",
@@ -512,7 +512,7 @@ export default [
     talkAbout: [],
   },
   {
-    id: 0,
+    id: null,
     name: "Galahad",
     tagline: "Internal deep researcher",
     role: "Market Research",
@@ -524,7 +524,7 @@ export default [
     talkAbout: [],
   },
   {
-    id: 0,
+    id: null,
     name: "Roderick",
     tagline: "QA tests systems",
     role: "System Security",
@@ -536,7 +536,7 @@ export default [
     talkAbout: [],
   },
   {
-    id: 0,
+    id: null,
     name: "Bingo",
     tagline: "Analyzes product databases",
     role: "Customer Insights",
@@ -548,7 +548,7 @@ export default [
     talkAbout: [],
   },
   {
-    id: 0,
+    id: null,
     name: "Honoria",
     tagline: "Learns from GTM data",
     role: "Product Strategy",
@@ -560,7 +560,7 @@ export default [
     talkAbout: [],
   },
   {
-    id: 0,
+    id: null,
     name: "Augustus",
     tagline: "Financial data scientist",
     role: "Financial Modeling",
@@ -572,7 +572,7 @@ export default [
     talkAbout: [],
   },
   {
-    id: 0,
+    id: null,
     name: "Watkyn",
     tagline: "Writes NDAs/simple contracts",
     role: "Legal Analysis",
@@ -584,7 +584,7 @@ export default [
     talkAbout: [],
   },
   {
-    id: 0,
+    id: null,
     name: "Florence",
     tagline: "Optimizes human resources",
     role: "Talent Management",
@@ -596,7 +596,7 @@ export default [
     talkAbout: [],
   },
   {
-    id: 0,
+    id: null,
     name: "Stanley",
     tagline: "Identifies sales opportunities",
     role: "Sales Intelligence",
@@ -608,7 +608,7 @@ export default [
     talkAbout: [],
   },
   {
-    id: 0,
+    id: null,
     name: "Gussie",
     tagline: "Streamlines business processes",
     role: "Operations",
@@ -620,7 +620,7 @@ export default [
     talkAbout: [],
   },
   {
-    id: 0,
+    id: null,
     name: "Stiffy",
     tagline: "Assists in ideation",
     role: "R&D",
@@ -632,7 +632,7 @@ export default [
     talkAbout: [],
   },
   {
-    id: 0,
+    id: null,
     name: "Freddie",
     tagline: "Physical workflow automation",
     role: "Supply Chain",
@@ -644,7 +644,7 @@ export default [
     talkAbout: [],
   },
   {
-    id: 0,
+    id: null,
     name: "Harold",
     tagline: "Orchestrates Linear boards",
     role: "Project Management",
@@ -656,7 +656,7 @@ export default [
     talkAbout: [],
   },
   {
-    id: 0,
+    id: null,
     name: "Dahlia",
     tagline: "Emotionally-intelligent advisor",
     role: "Global Strategy",
@@ -668,7 +668,7 @@ export default [
     talkAbout: [],
   },
   {
-    id: 0,
+    id: null,
     name: "Angela",
     tagline: "Internal tools manager",
     role: "Assistant",
@@ -680,7 +680,7 @@ export default [
     talkAbout: [],
   },
   {
-    id: 0,
+    id: null,
     name: "Anatole",
     tagline: "Deep-thinking writer",
     role: "Communications",

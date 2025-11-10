@@ -3,4 +3,7 @@ export default () => ({
     enabled: true,
     resolve: './src/plugins/standard-strapi-toolkit'
   },
+  'drag-drop-content-types-strapi5': {
+    enabled: true,
+  },
 });

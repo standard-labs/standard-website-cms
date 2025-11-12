@@ -1,4 +1,4 @@
-name: Run npm install on VPS
+name: Deploy CMS to VPS
 
 on:
   push:
@@ -6,34 +6,39 @@ on:
       - main
 
 jobs:
-  npm-install:
-    name: SSH and install dependencies
+  deploy:
+    name: Strapi CMS Deployment
     runs-on: ubuntu-latest
 
     steps:
-      # Checkout repository (optional)
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      - name: SSH to VPS
+      - name: SSH into VPS and Deploy
         uses: appleboy/ssh-action@v0.1.7
         with:
           host: ${{ secrets.VPS_HOST }}
           username: ${{ secrets.VPS_USER }}
           password: ${{ secrets.VPS_PASSWORD }}
           script: |
-            cd ${{ secrets.VPS_PATH }}
-            npm install
-            echo "Step-2"
-
-      # SSH into VPS and run npm install
-      - name: Install dependencies on VPS
-        uses: appleboy/ssh-action@v0.1.7
-        with:
-          host: ${{ secrets.VPS_HOST }}
-          username: ${{ secrets.VPS_USER }}
-          key: ${{ secrets.VPS_SSH_PRIVATE_KEY }}
-          script: |
             set -e
+            echo "Connecting to VPS..."
+
             cd ${{ secrets.VPS_PATH }}
-            echo "Step-3"
+
+            echo "Installing dependencies..."
+            npm install
+
+            echo "Installing plugin..."
+            npm run install:plugin:standard-strapi-toolkit
+
+            echo "Building plugin..."
+            npm run build:plugin:standard-strapi-toolkit
+
+            echo "Building Strapi..."
+            npm run build
+
+            echo "Restarting with PM2..."
+            pm2 restart strapi || pm2 start npm --name "strapi" -- run start
+
+            echo "Deployment completed successfully!"

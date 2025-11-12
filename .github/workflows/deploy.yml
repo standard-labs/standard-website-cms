@@ -16,24 +16,6 @@ jobs:
 
       - name: SSH into VPS and Deploy
         uses: appleboy/ssh-action@v0.1.7
-        env:
-          HOST: ${{ secrets.HOST }}
-          PORT: ${{ secrets.PORT }}
-          APP_KEYS: ${{ secrets.APP_KEYS }}
-          API_TOKEN_SALT: ${{ secrets.API_TOKEN_SALT }}
-          ADMIN_JWT_SECRET: ${{ secrets.ADMIN_JWT_SECRET }}
-          TRANSFER_TOKEN_SALT: ${{ secrets.TRANSFER_TOKEN_SALT }}
-          ENCRYPTION_KEY: ${{ secrets.ENCRYPTION_KEY }}
-          DATABASE_CLIENT: ${{ secrets.DATABASE_CLIENT }}
-          DATABASE_HOST: ${{ secrets.DATABASE_HOST }}
-          DATABASE_PORT: ${{ secrets.DATABASE_PORT }}
-          DATABASE_NAME: ${{ secrets.DATABASE_NAME }}
-          DATABASE_USERNAME: ${{ secrets.DATABASE_USERNAME }}
-          DATABASE_PASSWORD: ${{ secrets.DATABASE_PASSWORD }}
-          DATABASE_SSL: ${{ secrets.DATABASE_SSL }}
-          DATABASE_FILENAME: ${{ secrets.DATABASE_FILENAME }}
-          JWT_SECRET: ${{ secrets.JWT_SECRET }}
-          ENVIRONMENT: ${{ secrets.ENVIRONMENT }}
         with:
           host: ${{ secrets.VPS_HOST }}
           username: ${{ secrets.VPS_USER }}
@@ -50,28 +32,7 @@ jobs:
             [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
 
             echo "Using Node v22.15.0..."
-            nvm use 22.15.0 || nvm install 22.15.0
-
-            echo "Writing environment variables to .env..."
-            cat > .env <<EOL
-            HOST=${HOST}
-            PORT=${PORT}
-            APP_KEYS=${APP_KEYS}
-            API_TOKEN_SALT=${API_TOKEN_SALT}
-            ADMIN_JWT_SECRET=${ADMIN_JWT_SECRET}
-            TRANSFER_TOKEN_SALT=${TRANSFER_TOKEN_SALT}
-            ENCRYPTION_KEY=${ENCRYPTION_KEY}
-            DATABASE_CLIENT=${DATABASE_CLIENT}
-            DATABASE_HOST=${DATABASE_HOST}
-            DATABASE_PORT=${DATABASE_PORT}
-            DATABASE_NAME=${DATABASE_NAME}
-            DATABASE_USERNAME=${DATABASE_USERNAME}
-            DATABASE_PASSWORD=${DATABASE_PASSWORD}
-            DATABASE_SSL=${DATABASE_SSL}
-            DATABASE_FILENAME=${DATABASE_FILENAME}
-            JWT_SECRET=${JWT_SECRET}
-            ENVIRONMENT=${ENVIRONMENT}
-            EOL
+            nvm use v22.15.0
 
             echo "Installing dependencies..."
             npm install
@@ -84,8 +45,5 @@ jobs:
 
             echo "Building Strapi..."
             npm run build
-
-            echo "Restarting Strapi with PM2..."
-            pm2 restart strapi || pm2 start npm --name "strapi" -- run start
 
             echo "Deployment completed successfully!"

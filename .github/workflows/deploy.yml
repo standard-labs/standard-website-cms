@@ -20,8 +20,10 @@ jobs:
 
       # Step 3: Deploy to VPS
       - name: Deploy to VPS
+        env:
+          VPS_PASSWORD: ${{ secrets.VPS_PASSWORD }}
         run: |
-          sshpass -p "${{ secrets.VPS_PASSWORD }}" ssh -o StrictHostKeyChecking=no ${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }} bash -s << 'EOF'
+          sshpass -e ssh -o StrictHostKeyChecking=no -o PreferredAuthentications=password -o PubkeyAuthentication=no ${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }} bash -s << 'EOF'
             set -e
             
             # Navigate to project directory

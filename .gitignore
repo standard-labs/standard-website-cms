@@ -127,10 +127,9 @@ coverage
 license.txt
 exports
 .strapi
-# dist
+dist
 build
 .strapi-updater.json
 .strapi-cloud.json
 
-# Only ignore project dist folder
-/dist/
+# /dist/

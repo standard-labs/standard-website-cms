@@ -26,6 +26,13 @@ jobs:
 
             cd ${{ secrets.VPS_PATH }}
 
+            echo "Loading NVM..."
+            export NVM_DIR="$HOME/.nvm"
+            [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+
+            echo "Using Node v22.15.0..."
+            nvm use v22.15.0
+
             echo "Installing dependencies..."
             npm install
 

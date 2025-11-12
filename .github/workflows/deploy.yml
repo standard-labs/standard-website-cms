@@ -14,64 +14,61 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      # Step 2: Setup SSH
-      - name: Setup SSH
-        uses: webfactory/ssh-agent@v0.9.0
-        with:
-          ssh-private-key: ${{ secrets.VPS_SSH_KEY }}
+      # Step 2: Install sshpass for password authentication
+      - name: Install sshpass
+        run: sudo apt-get update && sudo apt-get install -y sshpass
 
       # Step 3: Deploy to VPS
       - name: Deploy to VPS
-        env:
-          HOST: ${{ secrets.HOST }}
-          PORT: ${{ secrets.PORT }}
-          APP_KEYS: ${{ secrets.APP_KEYS }}
-          API_TOKEN_SALT: ${{ secrets.API_TOKEN_SALT }}
-          ADMIN_JWT_SECRET: ${{ secrets.ADMIN_JWT_SECRET }}
-          TRANSFER_TOKEN_SALT: ${{ secrets.TRANSFER_TOKEN_SALT }}
-          ENCRYPTION_KEY: ${{ secrets.ENCRYPTION_KEY }}
-          DATABASE_CLIENT: ${{ secrets.DATABASE_CLIENT }}
-          DATABASE_HOST: ${{ secrets.DATABASE_HOST }}
-          DATABASE_PORT: ${{ secrets.DATABASE_PORT }}
-          DATABASE_NAME: ${{ secrets.DATABASE_NAME }}
-          DATABASE_USERNAME: ${{ secrets.DATABASE_USERNAME }}
-          DATABASE_PASSWORD: ${{ secrets.DATABASE_PASSWORD }}
-          DATABASE_SSL: ${{ secrets.DATABASE_SSL }}
-          DATABASE_FILENAME: ${{ secrets.DATABASE_FILENAME }}
-          JWT_SECRET: ${{ secrets.JWT_SECRET }}
-          ENVIRONMENT: ${{ secrets.ENVIRONMENT }}
         run: |
-          ssh -o StrictHostKeyChecking=no ${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }} << 'EOF'
+          sshpass -p "${{ secrets.VPS_PASSWORD }}" ssh -o StrictHostKeyChecking=no ${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }} bash -s << 'EOF'
+            set -e
+            
+            # Navigate to project directory
             cd ${{ secrets.VPS_PATH }}
-
-            # Pull latest code
+            
+            # Pull latest code from main branch
             git pull origin main
-
-            # Write .env file using echo
-            echo "HOST=$HOST" > .env
-            echo "PORT=$PORT" >> .env
-            echo "APP_KEYS=$APP_KEYS" >> .env
-            echo "API_TOKEN_SALT=$API_TOKEN_SALT" >> .env
-            echo "ADMIN_JWT_SECRET=$ADMIN_JWT_SECRET" >> .env
-            echo "TRANSFER_TOKEN_SALT=$TRANSFER_TOKEN_SALT" >> .env
-            echo "ENCRYPTION_KEY=$ENCRYPTION_KEY" >> .env
-            echo "DATABASE_CLIENT=$DATABASE_CLIENT" >> .env
-            echo "DATABASE_HOST=$DATABASE_HOST" >> .env
-            echo "DATABASE_PORT=$DATABASE_PORT" >> .env
-            echo "DATABASE_NAME=$DATABASE_NAME" >> .env
-            echo "DATABASE_USERNAME=$DATABASE_USERNAME" >> .env
-            echo "DATABASE_PASSWORD=$DATABASE_PASSWORD" >> .env
-            echo "DATABASE_SSL=$DATABASE_SSL" >> .env
-            echo "DATABASE_FILENAME=$DATABASE_FILENAME" >> .env
-            echo "JWT_SECRET=$JWT_SECRET" >> .env
-            echo "ENVIRONMENT=$ENVIRONMENT" >> .env
-
+            
+            # Create .env file from secrets
+            cat > .env << 'ENVEOF'
+          HOST=${{ secrets.HOST }}
+          PORT=${{ secrets.PORT }}
+          APP_KEYS=${{ secrets.APP_KEYS }}
+          API_TOKEN_SALT=${{ secrets.API_TOKEN_SALT }}
+          ADMIN_JWT_SECRET=${{ secrets.ADMIN_JWT_SECRET }}
+          TRANSFER_TOKEN_SALT=${{ secrets.TRANSFER_TOKEN_SALT }}
+          ENCRYPTION_KEY=${{ secrets.ENCRYPTION_KEY }}
+          DATABASE_CLIENT=${{ secrets.DATABASE_CLIENT }}
+          DATABASE_HOST=${{ secrets.DATABASE_HOST }}
+          DATABASE_PORT=${{ secrets.DATABASE_PORT }}
+          DATABASE_NAME=${{ secrets.DATABASE_NAME }}
+          DATABASE_USERNAME=${{ secrets.DATABASE_USERNAME }}
+          DATABASE_PASSWORD=${{ secrets.DATABASE_PASSWORD }}
+          DATABASE_SSL=${{ secrets.DATABASE_SSL }}
+          DATABASE_FILENAME=${{ secrets.DATABASE_FILENAME }}
+          JWT_SECRET=${{ secrets.JWT_SECRET }}
+          ENVIRONMENT=${{ secrets.ENVIRONMENT }}
+          ENVEOF
+            
             # Install dependencies
-            npm install
-
+            echo "Installing dependencies..."
+            npm install --production=false
+            
             # Build Strapi
-            npm run build
-
-            # Restart Strapi with PM2
-            pm2 restart strapi || pm2 start npm --name "strapi" -- run start
+            echo "Building Strapi..."
+            NODE_ENV=production npm run build
+            
+            # Restart or start Strapi with PM2
+            echo "Restarting Strapi with PM2..."
+            if pm2 describe strapi > /dev/null 2>&1; then
+              pm2 restart strapi
+            else
+              pm2 start npm --name "strapi" -- run start
+            fi
+            
+            # Save PM2 configuration
+            pm2 save
+            
+            echo "Deployment completed successfully!"
           EOF

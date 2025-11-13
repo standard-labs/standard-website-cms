@@ -15,32 +15,32 @@
     "upgrade:dry": "npx @strapi/upgrade latest --dry",
     "build-project": "sh scripts/build.sh",
     "install:plugin:standard-strapi-toolkit": "npm install --prefix ./src/plugins/standard-strapi-toolkit",
-    "watch:plugin:standard-strapi-toolkit": "npm run watch --prefix ./src/plugins/standard-strapi-toolkit",
+    "dev:plugin:standard-strapi-toolkit": "npm run dev --prefix ./src/plugins/standard-strapi-toolkit",
     "build:plugin:standard-strapi-toolkit": "npm run build --prefix ./src/plugins/standard-strapi-toolkit",
     "seed": "tsx seed/index.ts",
     "seed:example": "node ./scripts/seed.js"
   },
   "dependencies": {
-    "@strapi/plugin-cloud": "5.18.0",
-    "@strapi/plugin-users-permissions": "5.18.0",
-    "@strapi/strapi": "5.18.0",
+    "@strapi/plugin-cloud": "5.31.0",
+    "@strapi/plugin-users-permissions": "5.31.0",
+    "@strapi/strapi": "5.31.0",
     "@yunusemrejs/drag-drop-content-types-strapi5": "^1.0.11",
-    "better-sqlite3": "11.3.0",
+    "better-sqlite3": "12.4.1",
     "mime-types": "^3.0.1",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
     "react-router-dom": "^6.0.0",
-    "styled-components": "^6.0.0"
+    "styled-components": "^6.1.19"
   },
   "devDependencies": {
-    "@types/node": "^20",
+    "@types/node": "^24",
     "@types/react": "^18",
     "@types/react-dom": "^18",
-    "tsx": "^4.20.3",
+    "tsx": "^4.20.6",
     "typescript": "^5"
   },
   "engines": {
-    "node": ">=18.0.0 <=22.x.x",
+    "node": ">=18.0.0 <=24.x.x",
     "npm": ">=6.0.0"
   },
   "strapi": {

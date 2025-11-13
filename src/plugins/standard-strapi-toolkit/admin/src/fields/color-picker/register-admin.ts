@@ -10,14 +10,14 @@ export default {
   type: 'string',
   intlLabel: {
     id: `${PLUGIN_ID}.${FIELD_ID}.label`,
-    defaultMessage: 'Icon Picker',
+    defaultMessage: 'Color Picker',
   },
   intlDescription: {
     id: `${PLUGIN_ID}.${FIELD_ID}.description`,
-    defaultMessage: 'A custom Strapi field to pick and store icons from a predefined list.',
+    defaultMessage: 'A custom Strapi field that lets users pick and store a color value (HEX, RGB, or HSL).',
   },
   icon: Icon,
   components: {
     Input: async () => import('./input'),
   },
-}
+};

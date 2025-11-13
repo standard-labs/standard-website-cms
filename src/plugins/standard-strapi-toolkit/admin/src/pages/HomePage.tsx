@@ -13,6 +13,7 @@ const HomePage = () => {
       </h1>
       <p>
         This plugin provides additional features to enhance your CMS experience.
+        {/* Testing */}
       </p>
     </Main>
   );

@@ -53,7 +53,13 @@ jobs:
             set -e
             cd ${{ secrets.VPS_PATH }}
 
+            echo "Pull latest code"
             git pull origin main
+
+            echo "Load NVM and use Node 22.15.0"
+            export NVM_DIR="$HOME/.nvm"
+            [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+            nvm use 22.15.0
 
             echo "Extracting new build..."
             tar -xzf deploy.tar.gz

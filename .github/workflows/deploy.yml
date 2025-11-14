@@ -1,4 +1,4 @@
-name: Deploy CMS to VPS
+name: Build & Deploy Strapi CMS
 
 on:
   push:
@@ -6,58 +6,60 @@ on:
       - main
 
 jobs:
-  deploy:
-    name: Strapi CMS Deployment
+  build:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v3
+      - name: Checkout repo
+        uses: actions/checkout@v4
 
-      - name: SSH into VPS and Deploy
+      - name: Use Node.js 22.15.0
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22.15.0
+
+      - name: Install dependencies
+        run: npm install
+
+      # - name: Build Strapi Plugin
+      #   run: npm run build:plugin:standard-strapi-toolkit
+
+      - name: Build Strapi Admin
+        env:
+          NODE_ENV: production
+          NODE_OPTIONS: "--max-old-space-size=4096"
+        run: npm run build
+
+      - name: Create deployment package
+        run: |
+          rm -f deploy.tar.gz
+          tar -czf deploy.tar.gz dist src package.json package-lock.json .env
+
+      - name: Upload build to VPS
+        uses: appleboy/scp-action@v0.1.7
+        with:
+          host: ${{ secrets.VPS_HOST }}
+          username: ${{ secrets.VPS_USER }}
+          password: ${{ secrets.VPS_PASSWORD }}
+          source: "deploy.tar.gz"
+          target: "${{ secrets.VPS_PATH }}"
+
+      - name: Run deployment on VPS
         uses: appleboy/ssh-action@v0.1.7
         with:
           host: ${{ secrets.VPS_HOST }}
           username: ${{ secrets.VPS_USER }}
           password: ${{ secrets.VPS_PASSWORD }}
-          # key: ${{ secrets.VPS_SSH_PRIVATE_KEY }}
           script: |
-            set -e
-            echo "Connecting to VPS..."
-
             cd ${{ secrets.VPS_PATH }}
 
-            git pull origin main
+            echo "Extracting new build..."
+            tar -xzf deploy.tar.gz
 
-            echo "Loading NVM..."
-            export NVM_DIR="$HOME/.nvm"
-            [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+            echo "Installing production dependencies..."
+            npm ci --omit=dev --no-audit --no-fund
 
-            echo "Using Node v22.15.0..."
-            nvm use v22.15.0
-
-            echo "Deleting strapi node modules..."
-            rm -rf node_modules/.strapi node_modules/@strapi
-
-            echo "Installing dependencies..."
-            npm install
-
-            # echo "Installing plugin..."
-            # npm run install:plugin:standard-strapi-toolkit
-
-            echo "Increasing Node memory limit..."
-            export NODE_OPTIONS="--max-old-space-size=4096"
-
-            # echo "Starting plugin in development mode (no build)..."
-            # npm run dev:plugin:standard-strapi-toolkit
-
-            # echo "Starting plugin build"
-            # npm run build:plugin:standard-strapi-toolkit
-
-            echo "Building Strapi..."
-            npm run build
-
-            echo "Restarting with PM2..."
+            echo "Restarting PM2..."
             pm2 restart standard-cms || pm2 start npm --name "standard-cms" -- run start
 
-            echo "Deployment completed successfully!"
+            echo "Deployment completed!"

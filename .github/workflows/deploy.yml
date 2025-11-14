@@ -36,8 +36,8 @@ jobs:
             echo "Using Node v22.15.0..."
             nvm use v22.15.0
 
-            echo "Deleting node modules..."
-            rm -rf node_modules
+            echo "Deleting strapi node modules..."
+            rm -rf node_modules/.strapi node_modules/@strapi
 
             echo "Installing dependencies..."
             npm install

@@ -27,6 +27,8 @@ jobs:
 
             cd ${{ secrets.VPS_PATH }}
 
+            git pull origin main
+
             echo "Loading NVM..."
             export NVM_DIR="$HOME/.nvm"
             [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
@@ -40,11 +42,14 @@ jobs:
             echo "Installing plugin..."
             npm run install:plugin:standard-strapi-toolkit
 
-            echo "Increasing Node memory limit for build..."
+            echo "Increasing Node memory limit..."
             export NODE_OPTIONS="--max-old-space-size=4096"
 
-            echo "Building plugin..."
-            npm run build:plugin:standard-strapi-toolkit
+            # echo "Starting plugin in development mode (no build)..."
+            # npm run dev:plugin:standard-strapi-toolkit
+
+            # echo "Starting plugin build"
+            # npm run build:plugin:standard-strapi-toolkit
 
             echo "Building Strapi..."
             npm run build

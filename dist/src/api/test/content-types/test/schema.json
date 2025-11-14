@@ -1,0 +1,36 @@
+{
+    "kind": "collectionType",
+    "collectionName": "tests",
+    "info": {
+        "singularName": "test",
+        "pluralName": "tests",
+        "displayName": "Test"
+    },
+    "options": {
+        "draftAndPublish": true
+    },
+    "pluginOptions": {},
+    "attributes": {
+        "color_field": {
+            "type": "customField",
+            "customField": "plugin::standard-strapi-toolkit.color-picker"
+        },
+        "icon_field": {
+            "type": "customField",
+            "customField": "plugin::standard-strapi-toolkit.icon-picker"
+        },
+        "multi_select_field": {
+            "type": "customField",
+            "customField": "plugin::standard-strapi-toolkit.multi-select",
+            "default": "[]"
+        },
+        "text_matrix_field": {
+            "type": "customField",
+            "customField": "plugin::standard-strapi-toolkit.multi-tags"
+        },
+        "simple_tags_field": {
+            "type": "customField",
+            "customField": "plugin::standard-strapi-toolkit.simple-tags"
+        }
+    }
+}

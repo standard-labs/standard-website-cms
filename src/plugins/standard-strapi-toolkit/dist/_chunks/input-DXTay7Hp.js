@@ -1,0 +1,88 @@
+"use strict";
+Object.defineProperty(exports, Symbol.toStringTag, { value: "Module" });
+const jsxRuntime = require("react/jsx-runtime");
+const designSystem = require("@strapi/design-system");
+const admin = require("@strapi/strapi/admin");
+const React = require("react");
+const reactIntl = require("react-intl");
+function _interopNamespace(e) {
+  if (e && e.__esModule) return e;
+  const n = Object.create(null, { [Symbol.toStringTag]: { value: "Module" } });
+  if (e) {
+    for (const k in e) {
+      if (k !== "default") {
+        const d = Object.getOwnPropertyDescriptor(e, k);
+        Object.defineProperty(n, k, d.get ? d : {
+          enumerable: true,
+          get: () => e[k]
+        });
+      }
+    }
+  }
+  n.default = e;
+  return Object.freeze(n);
+}
+const React__namespace = /* @__PURE__ */ _interopNamespace(React);
+const Input = React__namespace.forwardRef((props, ref) => {
+  const {
+    label,
+    attribute,
+    description,
+    disabled,
+    intlLabel,
+    name,
+    required,
+    hint,
+    placeholder
+  } = props;
+  const { formatMessage } = reactIntl.useIntl();
+  const field = admin.useField(name);
+  if (!field) {
+    console.error(`Field "${name}" is not properly initialized in form context`);
+    return null;
+  }
+  const { onChange, value = "", error } = field;
+  const handleChange = (e) => {
+    if (onChange) {
+      onChange({
+        target: {
+          name,
+          type: attribute.type,
+          value: e.currentTarget.value
+        }
+      });
+    }
+  };
+  return /* @__PURE__ */ jsxRuntime.jsx(
+    designSystem.Field.Root,
+    {
+      id: name,
+      name,
+      hint: description?.defaultMessage || hint,
+      error,
+      required,
+      children: /* @__PURE__ */ jsxRuntime.jsxs(designSystem.Flex, { direction: "column", alignItems: "stretch", gap: 2, children: [
+        /* @__PURE__ */ jsxRuntime.jsx(designSystem.Field.Label, { children: intlLabel?.id ? formatMessage(intlLabel) : label }),
+        /* @__PURE__ */ jsxRuntime.jsx(
+          designSystem.Field.Input,
+          {
+            ref,
+            type: "text",
+            name,
+            disabled,
+            value: value || "",
+            required,
+            onChange: handleChange,
+            placeholder: placeholder || "e.g., AArrowDown",
+            style: { width: "100%", height: "38px", padding: "8px" }
+          }
+        ),
+        /* @__PURE__ */ jsxRuntime.jsx("div", { children: "From https://lucide.dev/icons/ i.e AArrowDown" }),
+        /* @__PURE__ */ jsxRuntime.jsx(designSystem.Field.Error, {})
+      ] })
+    }
+  );
+});
+Input.displayName = "LucideIconInput";
+exports.default = Input;
+//# sourceMappingURL=input-DXTay7Hp.js.map

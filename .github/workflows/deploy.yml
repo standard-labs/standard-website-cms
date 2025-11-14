@@ -71,3 +71,6 @@ jobs:
             pm2 restart standard-cms || pm2 start npm --name "standard-cms" -- run start
 
             echo "Deployment completed successfully!"
+
+# * **Strapi Project:** Built on GitHub Actions to avoid RAM issues on the VPS.
+# * **Plugin:** Used watch-mode build to prevent production issues.

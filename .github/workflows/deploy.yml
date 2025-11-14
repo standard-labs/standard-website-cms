@@ -42,8 +42,8 @@ jobs:
             echo "Installing dependencies..."
             npm install
 
-            echo "Installing plugin..."
-            npm run install:plugin:standard-strapi-toolkit
+            # echo "Installing plugin..."
+            # npm run install:plugin:standard-strapi-toolkit
 
             echo "Increasing Node memory limit..."
             export NODE_OPTIONS="--max-old-space-size=4096"

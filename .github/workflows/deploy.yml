@@ -36,6 +36,9 @@ jobs:
             echo "Using Node v22.15.0..."
             nvm use v22.15.0
 
+            echo "Deleting node modules..."
+            rm -rf node_modules
+
             echo "Installing dependencies..."
             npm install
 

@@ -1,5 +1,5 @@
 {
-    "kind": "collectionType",
+    "kind": "singleType",
     "collectionName": "tests",
     "info": {
         "singularName": "test",
@@ -11,24 +11,24 @@
     },
     "pluginOptions": {},
     "attributes": {
-        "color_field": {
+        "color": {
             "type": "customField",
             "customField": "plugin::standard-strapi-toolkit.color-picker"
         },
-        "icon_field": {
+        "icon": {
             "type": "customField",
             "customField": "plugin::standard-strapi-toolkit.icon-picker"
         },
-        "multi_select_field": {
+        "multi_select": {
             "type": "customField",
             "customField": "plugin::standard-strapi-toolkit.multi-select",
             "default": "[]"
         },
-        "text_matrix_field": {
+        "text_matrix": {
             "type": "customField",
             "customField": "plugin::standard-strapi-toolkit.multi-tags"
         },
-        "simple_tags_field": {
+        "simple_tags": {
             "type": "customField",
             "customField": "plugin::standard-strapi-toolkit.simple-tags"
         }

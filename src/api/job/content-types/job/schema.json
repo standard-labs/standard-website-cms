@@ -34,7 +34,7 @@
     },
     "employmentType": {
       "type": "enumeration",
-      "enum": ["FULL_TIME", "PART_TIME", "INTERNSHIP", "CONTRACT"],
+      "enum": ["FULL_TIME", "PART_TIME", "INTERNSHIP", "CONTRACT", "BOOT_CAMP"],
       "required": true
     },
     "salaryRange": {

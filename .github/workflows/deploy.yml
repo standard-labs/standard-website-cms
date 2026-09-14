@@ -5,22 +5,30 @@ on:
     branches:
       - main
 
+concurrency:
+  group: standard-cms-production
+  cancel-in-progress: false
+
 jobs:
   build-and-deploy:
     name: Build & Deploy
-    runs-on: ubuntu-latest
+    runs-on: [self-hosted, netcup, standard-website-cms]
+    timeout-minutes: 30
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
+
+      - name: Verify Vienna runner policy
+        run: python3 scripts/check_ci_runner_policy.py
 
       - name: Setup Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v5
         with:
           node-version: 22.15.0
 
       - name: Install dependencies
-        run: npm install
+        run: npm ci
 
       - name: Build Strapi Admin
         env:
